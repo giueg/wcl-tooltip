@@ -153,7 +153,14 @@
                             if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
                             var element = document.createElement('div');
-                            element.innerHTML = this.getAttribute('data-wcltip-text');
+
+                            var text;
+                            if (this.hasAttribute('data-wcltip-text')) {
+                                text = this.getAttribute('data-wcltip-text');
+                            } else if (this.hasAttribute('data-wcltip-text-src')) {
+                                text = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
+                            }
+                            element.innerHTML = text;
                             DOM.addClass(element, 'wcl-tooltip');
 
                             this.appendChild(element);

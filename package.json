@@ -1,11 +1,11 @@
 {
-  "name": "tooltip",
+  "name": "wcl-tooltip",
   "version": "0.0.1",
   "description": "",
-  "main": "tooltip.js",
+  "main": "wcl-tooltip.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "example-build": "cd example && npm uninstall tooltip && npm install && npm update tooltip && browserify main.js -o bundle.js"
+    "example-build": "cd example && npm uninstall wcl-tooltip && npm install && browserify main.js -o bundle.js"
   },
   "author": "matsukawa",
   "license": "MIT"

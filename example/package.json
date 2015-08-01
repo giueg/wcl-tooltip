@@ -9,6 +9,6 @@
   "author": "matsukawa",
   "license": "MIT",
   "dependencies": {
-    "tooltip": "file:.."
+    "wcl-tooltip": "file:.."
   }
 }

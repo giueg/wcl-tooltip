@@ -1,5 +1,5 @@
 
 window.onload = function() {
-  var tooltip = require('tooltip');
+  var tooltip = require('wcl-tooltip');
   tooltip.init('.tooltipped');
 };

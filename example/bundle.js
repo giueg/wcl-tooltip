@@ -1,11 +1,11 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 window.onload = function() {
-  var tooltip = require('tooltip');
+  var tooltip = require('wcl-tooltip');
   tooltip.init('.tooltipped');
 };
 
-},{"tooltip":2}],2:[function(require,module,exports){
+},{"wcl-tooltip":2}],2:[function(require,module,exports){
 +function () {
     "use strict";
 
@@ -105,11 +105,11 @@ window.onload = function() {
                 var firstInit = true;
 
                 function calcPosition(target, tooltip, option) {
-                    var targetRect = target.getBoundingClientRect();
-                    var tooltipRect = tooltip.getBoundingClientRect();
-                    var scrollX = window.scrollX;
-                    var scrollY = window.scrollY;
-                    var position = option.position === 'auto' ? function(t, d) {
+                    var targetRect = target.getBoundingClientRect(),
+                        tooltipRect = tooltip.getBoundingClientRect(),
+                        scrollX = window.scrollX,
+                        scrollY = window.scrollY,
+                        position = option.position === 'auto' ? function(t, d) {
                             if (window.scrollY + t.top > d.height) {
                                 return 'top';
                             } else if (window.scrollY + t.bottom > d.height) {
@@ -120,7 +120,7 @@ window.onload = function() {
                             return 'left';
                         }(targetRect, tooltipRect) : option.position;
 
-                    DOM.addClass(tooltip, 'tooltip-' + position);
+                    DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
                     switch (position) {
                         case 'top':
@@ -146,8 +146,8 @@ window.onload = function() {
 
                     if (firstInit) {
                         Event.addClickEvent(document, function (o) {
-                            if (createdElement && !DOM.hasClass(o.target, 'tooltip-holder') && !DOM.closest(o.target, '.tooltip-holder')) {
-                                DOM.removeClass(createdElement.parentElement, 'tooltip-holder');
+                            if (createdElement && !DOM.hasClass(o.target, 'wcl-tooltip-holder') && !DOM.closest(o.target, '.wcl-tooltip-holder')) {
+                                DOM.removeClass(createdElement.parentElement, 'wcl-tooltip-holder');
                                 createdElement.remove();
                                 createdElement = null;
                             }
@@ -156,22 +156,21 @@ window.onload = function() {
                     }
 
                     var obj = document.querySelectorAll(selector);
-                    var length = obj.length;
-                    for (var i = 0; i < length; i++) {
+                    for (var i = 0, length = obj.length; i < length; i++) {
                         Event.addClickEvent(obj.item(i), function () {
-                            if (DOM.hasClass(this, 'tooltip-holder')) return;
+                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
                             var element = document.createElement('div');
-                            element.innerHTML = this.getAttribute('data-tooltip-text');
-                            DOM.addClass(element, 'tooltip');
+                            element.innerHTML = this.getAttribute('data-wcl-tooltip-text');
+                            DOM.addClass(element, 'wcl-tooltip');
 
                             this.appendChild(element);
                             calcPosition(this, element, option);
 
-                            DOM.addClass(this, 'tooltip-holder');
+                            DOM.addClass(this, 'wcl-tooltip-holder');
 
                             if (createdElement) {
-                                DOM.removeClass(createdElement.parentElement, 'tooltip-holder');
+                                DOM.removeClass(createdElement.parentElement, 'wcl-tooltip-holder');
                                 createdElement.remove();
                                 createdElement = null;
                             }

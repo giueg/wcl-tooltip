@@ -1,5 +1,5 @@
 
-.tooltip {
+.wcl-tooltip {
     position: absolute;
     width: auto;
     height: auto;
@@ -8,7 +8,7 @@
     text-align: center;
 }
 
-.tooltip-top:before {
+.wcl-tooltip-top:before {
     content: "";
     position: absolute;
     bottom: -10px;
@@ -20,7 +20,7 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
 }
-.tooltip-top:after {
+.wcl-tooltip-top:after {
     content: "";
     position: absolute;
     bottom: -9px;
@@ -33,7 +33,7 @@
     border-right: 10px solid transparent;
 }
 
-.tooltip-bottom:before {
+.wcl-tooltip-bottom:before {
     content: "";
     position: absolute;
     top: -10px;
@@ -45,7 +45,7 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
 }
-.tooltip-bottom:after {
+.wcl-tooltip-bottom:after {
     content: "";
     position: absolute;
     top: -9px;
@@ -58,7 +58,7 @@
     border-right: 10px solid transparent;
 }
 
-.tooltip-right:before {
+.wcl-tooltip-right:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -70,7 +70,7 @@
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
-.tooltip-right:after {
+.wcl-tooltip-right:after {
     content: "";
     position: absolute;
     top: 50%;
@@ -83,7 +83,7 @@
     border-bottom: 10px solid transparent;
 }
 
-.tooltip-left:before {
+.wcl-tooltip-left:before {
     content: "";
     position: absolute;
     top: 50%;
@@ -95,7 +95,7 @@
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
-.tooltip-left:after {
+.wcl-tooltip-left:after {
     content: "";
     position: absolute;
     top: 50%;

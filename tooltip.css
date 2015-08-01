@@ -1,0 +1,109 @@
+
+.tooltip {
+    position: absolute;
+    width: auto;
+    height: auto;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    text-align: center;
+}
+
+.tooltip-top:before {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #ccc;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.tooltip-top:after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.tooltip-bottom:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #ccc;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+.tooltip-bottom:after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    left: 50%;
+    margin-left: -10px;
+    width: 0;
+    height: 0;
+    border-bottom: 10px solid #fff;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.tooltip-right:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -10px;
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid #ccc;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.tooltip-right:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -9px;
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-right: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+
+.tooltip-left:before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #ccc;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.tooltip-left:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -9px;
+    margin-top: -10px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #fff;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}

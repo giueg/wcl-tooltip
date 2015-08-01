@@ -161,7 +161,7 @@ window.onload = function() {
                             if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
                             var element = document.createElement('div');
-                            element.innerHTML = this.getAttribute('data-wcl-tooltip-text');
+                            element.innerHTML = this.getAttribute('data-wcltip-text');
                             DOM.addClass(element, 'wcl-tooltip');
 
                             this.appendChild(element);

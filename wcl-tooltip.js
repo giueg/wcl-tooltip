@@ -102,14 +102,10 @@
                         scrollX = window.scrollX,
                         scrollY = window.scrollY,
                         position = option.position === 'auto' ? function(t, d) {
-                            if (window.scrollY + t.top > d.height) {
+                            if (t.top > t.bottom) {
                                 return 'top';
-                            } else if (window.scrollY + t.bottom > d.height) {
-                                return 'bottom';
-                            } else if (window.scrollX + t.right > d.width) {
-                                return 'right';
                             }
-                            return 'left';
+                            return 'bottom';
                         }(targetRect, tooltipRect) : option.position;
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
@@ -159,6 +155,8 @@
                                 text = this.getAttribute('data-wcltip-text');
                             } else if (this.hasAttribute('data-wcltip-text-src')) {
                                 text = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
+                            } else if (this.hasAttribute('data-wcltip-html-src')) {
+                                text = document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML;
                             }
                             element.innerHTML = text;
                             DOM.addClass(element, 'wcl-tooltip');

@@ -113,3 +113,25 @@
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
 }
+
+.wcl-tooltip-header {
+    display: table-cell;
+    vertical-align: middle;
+    height: 35px;
+    padding: 0 15px;
+}
+.wcl-tooltip-title {
+    display: table-cell;
+}
+.wcl-tooltip-title h1{
+    font-size: medium;
+    margin: 0;
+}
+.wcl-tooltip-close-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 8px 12px;
+}
+.wcl-tooltip-close {
+}

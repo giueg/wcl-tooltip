@@ -193,18 +193,17 @@
 
                             var element = document.createElement('div');
 
-                            var text;
                             if (this.hasAttribute('data-wcltip-text')) {
-                                text = this.getAttribute('data-wcltip-text');
+                                element.textContent = this.getAttribute('data-wcltip-text');
                             } else if (this.hasAttribute('data-wcltip-text-src')) {
-                                text = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
+                                element.textContent = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
                             } else if (this.hasAttribute('data-wcltip-html-src')) {
-                                text = document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML;
+                                var html = document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML;
                                 if (this.hasAttribute('data-wcltip-title')) {
-                                    text = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + text;
+                                    html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
                                 }
+                                element.innerHTML = html;
                             }
-                            element.innerHTML = text;
                             DOM.addClass(element, 'wcl-tooltip');
                             Effect.fadeIn(element);
 

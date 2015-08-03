@@ -132,6 +132,9 @@
                 </a>
              </div>
             */}).toString().match(/\/\*([^]*)\*\//)[1],
+            bodyHtml: (function () {/*
+             <div class="wcl-tooltip-body">__BODY__</div>
+            */}).toString().match(/\/\*([^]*)\*\//)[1],
             init: function () {
                 var createdElement;
                 var holderElement;
@@ -204,7 +207,7 @@
                             } else if (this.hasAttribute('data-wcltip-text-src')) {
                                 element.textContent = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
                             } else if (this.hasAttribute('data-wcltip-html-src')) {
-                                var html = document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML;
+                                var html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
                                 if (this.hasAttribute('data-wcltip-title')) {
                                     html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
                                 }

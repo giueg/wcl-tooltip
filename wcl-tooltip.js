@@ -134,6 +134,7 @@
             */}).toString().match(/\/\*([^]*)\*\//)[1],
             init: function () {
                 var createdElement;
+                var holderElement;
                 var firstInit = true;
 
                 function calcPosition(target, tooltip, option) {
@@ -172,19 +173,24 @@
                 return function (selector, option) {
                     option = _.extend(Tooltip.defaultOption, option);
 
-                    if (firstInit) {
+                    firstInit && -function() {
+                        var container = document.createElement('div');
+                        container.id = 'wcl-tooltip-container';
+                        document.body.appendChild(container);
+
                         Event.addClickEvent(document, function (o) {
                             if (createdElement &&
-                                (!DOM.hasClass(o.target, 'wcl-tooltip-holder') && !DOM.closest(o.target, '.wcl-tooltip-holder') ||
+                                ((o.target !== holderElement && o.target !== createdElement) ||
                                 (DOM.hasClass(o.target, 'wcl-tooltip-close') || DOM.closest(o.target, '.wcl-tooltip-close')))
                             ) {
-                                DOM.removeClass(createdElement.parentElement, 'wcl-tooltip-holder');
+                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
                                 createdElement.remove();
                                 createdElement = null;
+                                holderElement = null;
                             }
                         });
                         firstInit = false;
-                    }
+                    }();
 
                     var obj = document.querySelectorAll(selector);
                     for (var i = 0, length = obj.length; i < length; i++) {
@@ -207,17 +213,19 @@
                             DOM.addClass(element, 'wcl-tooltip');
                             Effect.fadeIn(element);
 
-                            this.appendChild(element);
+                            document.getElementById('wcl-tooltip-container').appendChild(element);
                             calcPosition(this, element, option);
 
                             DOM.addClass(this, 'wcl-tooltip-holder');
 
                             if (createdElement) {
-                                DOM.removeClass(createdElement.parentElement, 'wcl-tooltip-holder');
+                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
                                 createdElement.remove();
                                 createdElement = null;
+                                holderElement = null;
                             }
                             createdElement = element;
+                            holderElement = this;
                         });
                     }
                 };

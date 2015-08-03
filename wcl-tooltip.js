@@ -180,7 +180,7 @@
 
                         Event.addClickEvent(document, function (o) {
                             if (createdElement &&
-                                ((o.target !== holderElement && o.target !== createdElement) ||
+                                ((!DOM.hasClass(o.target, 'wcl-tooltip-holder') && !DOM.closest(o.target, '.wcl-tooltip-holder')) ||
                                 (DOM.hasClass(o.target, 'wcl-tooltip-close') || DOM.closest(o.target, '.wcl-tooltip-close')))
                             ) {
                                 DOM.removeClass(holderElement, 'wcl-tooltip-holder');

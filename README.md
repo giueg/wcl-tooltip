@@ -27,5 +27,8 @@ init options
 
 ## TODO
 
-* Edit README
+* Update README
 * dark theme
+* Add minimum test
+* min&map js
+* bower support

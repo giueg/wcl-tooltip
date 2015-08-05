@@ -105,6 +105,20 @@ window.addEventListener('load', function () {
                 } else if (el.detachEvent) {
                     el.detachEvent('onmouseover', handler);
                 }
+            },
+            addMouseoutEvent: function (el, handler) {
+                if (el.addEventListener) {
+                    el.addEventListener('mouseout', handler, false);
+                } else if (el.attachEvent) {
+                    el.attachEvent('onmouseout', handler);
+                }
+            },
+            removeMouseoutEvent: function (el, handler) {
+                if (el.removeEventListener) {
+                    el.removeEventListener('mouseout', handler, false);
+                } else if (el.detachEvent) {
+                    el.detachEvent('onmouseout', handler);
+                }
             }
         },
         DOM = function () {
@@ -195,7 +209,7 @@ window.addEventListener('load', function () {
         },
         Tooltip = {
             defaultOption: {
-                type: 'hover',
+                type: 'click',
                 position: 'auto',
                 theme: 'standard'
             },
@@ -250,6 +264,14 @@ window.addEventListener('load', function () {
                     }
                 }
 
+                function destroyTooltip() {
+                    if (!createdElement) return;
+                    DOM.removeClass(holderElement, 'wcl-tooltip-holder');
+                    createdElement.remove();
+                    createdElement = null;
+                    holderElement = null;
+                }
+
                 return function (selector, option) {
                     var o = _.extend(Tooltip.defaultOption, option);
 
@@ -266,10 +288,7 @@ window.addEventListener('load', function () {
                                 !DOM.closest(o.target, '.wcl-tooltip')) ||
                                 (DOM.hasClass(o.target, 'wcl-tooltip-close') || DOM.closest(o.target, '.wcl-tooltip-close')))
                             ) {
-                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                                createdElement.remove();
-                                createdElement = null;
-                                holderElement = null;
+                                destroyTooltip();
                             }
                         });
                         firstInit = false;
@@ -306,23 +325,18 @@ window.addEventListener('load', function () {
 
                             DOM.addClass(this, 'wcl-tooltip-holder');
 
-                            if (createdElement) {
-                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                                createdElement.remove();
-                                createdElement = null;
-                                holderElement = null;
-                            }
+                            createdElement && destroyTooltip();
                             createdElement = element;
                             holderElement = this;
                         };
 
-                    for (var i = 0, length = obj.length, e; i < length; i++) {
+                    for (var i = 0, length = obj.length; i < length; i++) {
                         if (o.type === 'hover') {
-                            e = 'addMouseoverEvent';
+                            Event.addMouseoverEvent(obj.item(i), f);
+                            Event.addMouseoutEvent(obj.item(i), destroyTooltip);
                         } else if (o.type === 'click') {
-                            e = 'addClickEvent'
+                            Event.addClickEvent(obj.item(i), f);
                         }
-                        Event[e](obj.item(i), f);
                     }
                 };
             }()

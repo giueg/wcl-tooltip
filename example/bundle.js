@@ -1,8 +1,34 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 window.addEventListener('load', function () {
-  var tooltip = require('wcl-tooltip');
-  tooltip.init('.tooltipped');
+    var tooltip = require('wcl-tooltip');
+    tooltip.init('.tooltipped', {
+        type: 'click'
+    });
+
+    tooltip.init('.tooltip-hover-top-dark', {
+        type: 'hover',
+        position: 'top',
+        theme: 'dark'
+    });
+
+    tooltip.init('.tooltip-hover-right-dark', {
+        type: 'hover',
+        position: 'right',
+        theme: 'dark'
+    });
+
+    tooltip.init('.tooltip-hover-bottom-dark', {
+        type: 'hover',
+        position: 'bottom',
+        theme: 'dark'
+    });
+
+    tooltip.init('.tooltip-hover-left-dark', {
+        type: 'hover',
+        position: 'left',
+        theme: 'dark'
+    });
 });
 
 },{"wcl-tooltip":2}],2:[function(require,module,exports){
@@ -39,6 +65,20 @@ window.addEventListener('load', function () {
                     el.removeEventListener('click', handler, false);
                 } else if (el.detachEvent) {
                     el.detachEvent('onclick', handler);
+                }
+            },
+            addMouseoverEvent: function (el, handler) {
+                if (el.addEventListener) {
+                    el.addEventListener('mouseover', handler, false);
+                } else if (el.attachEvent) {
+                    el.attachEvent('onmouseover', handler);
+                }
+            },
+            removeMouseoverEvent: function (el, handler) {
+                if (el.removeEventListener) {
+                    el.removeEventListener('mouseover', handler, false);
+                } else if (el.detachEvent) {
+                    el.detachEvent('onmouseover', handler);
                 }
             }
         },
@@ -130,6 +170,7 @@ window.addEventListener('load', function () {
         },
         Tooltip = {
             defaultOption: {
+                type: 'hover',
                 position: 'auto'
             },
             headerHtml: "\
@@ -184,7 +225,7 @@ window.addEventListener('load', function () {
                 }
 
                 return function (selector, option) {
-                    option = _.extend(Tooltip.defaultOption, option);
+                    var o = _.extend(Tooltip.defaultOption, option);
 
                     firstInit && -function() {
                         var container = document.createElement('div');
@@ -195,6 +236,7 @@ window.addEventListener('load', function () {
                             if (createdElement &&
                                 ((!DOM.hasClass(o.target, 'wcl-tooltip-holder') &&
                                 !DOM.closest(o.target, '.wcl-tooltip-holder') &&
+                                !DOM.hasClass(o.target, '.wcl-tooltip') &&
                                 !DOM.closest(o.target, '.wcl-tooltip')) ||
                                 (DOM.hasClass(o.target, 'wcl-tooltip-close') || DOM.closest(o.target, '.wcl-tooltip-close')))
                             ) {
@@ -207,41 +249,48 @@ window.addEventListener('load', function () {
                         firstInit = false;
                     }();
 
-                    var obj = document.querySelectorAll(selector);
-                    for (var i = 0, length = obj.length; i < length; i++) {
-                        Event.addClickEvent(obj.item(i), function () {
-                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
+                    var obj = document.querySelectorAll(selector),
+                        f = function () {
+                        if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
-                            var element = document.createElement('div');
+                        var element = document.createElement('div');
 
-                            if (this.hasAttribute('data-wcltip-text')) {
-                                element.textContent = this.getAttribute('data-wcltip-text');
-                            } else if (this.hasAttribute('data-wcltip-text-src')) {
-                                element.textContent = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
-                            } else if (this.hasAttribute('data-wcltip-html-src')) {
-                                var html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
-                                if (this.hasAttribute('data-wcltip-title')) {
-                                    html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
-                                }
-                                element.innerHTML = html;
+                        if (this.hasAttribute('data-wcltip-text')) {
+                            element.textContent = this.getAttribute('data-wcltip-text');
+                        } else if (this.hasAttribute('data-wcltip-text-src')) {
+                            element.textContent = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
+                        } else if (this.hasAttribute('data-wcltip-html-src')) {
+                            var html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
+                            if (this.hasAttribute('data-wcltip-title')) {
+                                html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
                             }
-                            DOM.addClass(element, 'wcl-tooltip');
-                            Effect.fadeIn(element);
+                            element.innerHTML = html;
+                        }
+                        DOM.addClass(element, 'wcl-tooltip');
+                        Effect.fadeIn(element);
 
-                            document.getElementById('wcl-tooltip-container').appendChild(element);
-                            calcPosition(this, element, option);
+                        document.getElementById('wcl-tooltip-container').appendChild(element);
+                        calcPosition(this, element, o);
 
-                            DOM.addClass(this, 'wcl-tooltip-holder');
+                        DOM.addClass(this, 'wcl-tooltip-holder');
 
-                            if (createdElement) {
-                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                                createdElement.remove();
-                                createdElement = null;
-                                holderElement = null;
-                            }
-                            createdElement = element;
-                            holderElement = this;
-                        });
+                        if (createdElement) {
+                            DOM.removeClass(holderElement, 'wcl-tooltip-holder');
+                            createdElement.remove();
+                            createdElement = null;
+                            holderElement = null;
+                        }
+                        createdElement = element;
+                        holderElement = this;
+                    };
+
+                    for (var i = 0, length = obj.length, e; i < length; i++) {
+                        if (o.type === 'hover') {
+                            e = 'addMouseoverEvent';
+                        } else if (o.type === 'click') {
+                            e = 'addClickEvent'
+                        }
+                        Event[e](obj.item(i), f);
                     }
                 };
             }()

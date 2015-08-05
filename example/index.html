@@ -5,6 +5,19 @@
   <title></title>
   <script src="bundle.js"></script>
   <link rel="stylesheet" type="text/css" href="../wcl-tooltip.css">
+  <style type="text/css">
+    .container {
+      width: 150px;
+      position: absolute;
+      top: 10%;
+      left: 40%;
+    }
+    .box {
+      float: left;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
 </head>
 <body>
 <span class="tooltipped" data-wcltip-text="ツールチップ1">data-wcltip-text</span>
@@ -14,6 +27,17 @@
 <div id="menu3-tooltip" style="display: none;">
   <a href="http://kumamon-official.jp">Kuma-mon official homepage</a><br>
   <img src="http://kumamon-official.jp/wp-content/themes/kumamon/images/top/img_main35.jpg" alt="kuma-mon"><br/>
+</div>
+<div class="container">
+  <div class="box"></div>
+  <div class="box tooltip-hover-top-dark" style="background-color: darkred;" data-wcltip-text="type: hover, position: top"></div>
+  <div class="box"></div>
+  <div class="box tooltip-hover-left-dark" style="background-color: cadetblue;" data-wcltip-text="type: hover, position: left"></div>
+  <div class="box"></div>
+  <div class="box tooltip-hover-right-dark" style="background-color: darkolivegreen;" data-wcltip-text="type: hover, position: right"></div>
+  <div class="box"></div>
+  <div class="box tooltip-hover-bottom-dark" style="background-color: black;" data-wcltip-text="type: hover, position: bottom"></div>
+  <div class="box"></div>
 </div>
 </body>
 </html>

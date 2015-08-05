@@ -50,7 +50,32 @@ window.addEventListener('load', function () {
                 }
 
                 return ret;
-            }
+            },
+            escapeHtml: (function () {
+                var escapeMap = {
+                    '&': '&amp;',
+                    "'": '&#x27;',
+                    '`': '&#x60;',
+                    '"': '&quot;',
+                    '<': '&lt;',
+                    '>': '&gt;'
+                };
+                var escapeReg = '[';
+                var reg;
+                for (var p in escapeMap) {
+                    if (escapeMap.hasOwnProperty(p)) {
+                        escapeReg += p;
+                    }
+                }
+                escapeReg += ']';
+                reg = new RegExp(escapeReg, 'g');
+                return function (str) {
+                    str = (str === null || str === undefined) ? '' : '' + str;
+                    return str.replace(reg, function (match) {
+                        return escapeMap[match];
+                    });
+                };
+            }())
         },
         Event = {
             addClickEvent: function (el, handler) {
@@ -251,38 +276,40 @@ window.addEventListener('load', function () {
 
                     var obj = document.querySelectorAll(selector),
                         f = function () {
-                        if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
+                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
-                        var element = document.createElement('div');
+                            var element = document.createElement('div');
 
-                        if (this.hasAttribute('data-wcltip-text')) {
-                            element.textContent = this.getAttribute('data-wcltip-text');
-                        } else if (this.hasAttribute('data-wcltip-text-src')) {
-                            element.textContent = document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
-                        } else if (this.hasAttribute('data-wcltip-html-src')) {
-                            var html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
-                            if (this.hasAttribute('data-wcltip-title')) {
-                                html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
+                            var html = '';
+                            if (this.hasAttribute('data-wcltip-text')) {
+                                html = Tooltip.bodyHtml.replace('__BODY__', _.escapeHtml(this.getAttribute('data-wcltip-text')));
+                            } else if (this.hasAttribute('data-wcltip-text-src')) {
+                                html = Tooltip.bodyHtml.replace('__BODY__', _.escapeHtml(document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML));
+                            } else if (this.hasAttribute('data-wcltip-html-src')) {
+                                html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
+                                if (this.hasAttribute('data-wcltip-title')) {
+                                    html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
+                                }
                             }
                             element.innerHTML = html;
-                        }
-                        DOM.addClass(element, 'wcl-tooltip');
-                        Effect.fadeIn(element);
 
-                        document.getElementById('wcl-tooltip-container').appendChild(element);
-                        calcPosition(this, element, o);
+                            DOM.addClass(element, 'wcl-tooltip');
+                            Effect.fadeIn(element);
 
-                        DOM.addClass(this, 'wcl-tooltip-holder');
+                            document.getElementById('wcl-tooltip-container').appendChild(element);
+                            calcPosition(this, element, o);
 
-                        if (createdElement) {
-                            DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                            createdElement.remove();
-                            createdElement = null;
-                            holderElement = null;
-                        }
-                        createdElement = element;
-                        holderElement = this;
-                    };
+                            DOM.addClass(this, 'wcl-tooltip-holder');
+
+                            if (createdElement) {
+                                DOM.removeClass(holderElement, 'wcl-tooltip-holder');
+                                createdElement.remove();
+                                createdElement = null;
+                                holderElement = null;
+                            }
+                            createdElement = element;
+                            holderElement = this;
+                        };
 
                     for (var i = 0, length = obj.length, e; i < length; i++) {
                         if (o.type === 'hover') {

@@ -25,9 +25,13 @@ init options
 }
 ```
 
+## Roadmap
+
+* sticky theme
+* bower support
+
 ## TODO
 
 * Update README
 * Add minimum test
 * min&map js
-* bower support

@@ -157,9 +157,11 @@
                     switch (position) {
                         case 'top':
                             tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
                             break;
                         case 'bottom':
                             tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
                             break;
                         case 'right':
                             tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';

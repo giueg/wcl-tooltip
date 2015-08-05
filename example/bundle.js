@@ -196,7 +196,8 @@ window.addEventListener('load', function () {
         Tooltip = {
             defaultOption: {
                 type: 'hover',
-                position: 'auto'
+                position: 'auto',
+                theme: 'standard'
             },
             headerHtml: "\
              <div class='wcl-tooltip-header'>\
@@ -294,6 +295,10 @@ window.addEventListener('load', function () {
                             element.innerHTML = html;
 
                             DOM.addClass(element, 'wcl-tooltip');
+                            if (o.theme === 'dark') {
+                                DOM.addClass(element, 'wcl-tooltip-theme-dark');
+                            }
+
                             Effect.fadeIn(element);
 
                             document.getElementById('wcl-tooltip-container').appendChild(element);

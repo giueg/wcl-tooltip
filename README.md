@@ -28,7 +28,6 @@ init options
 ## TODO
 
 * Update README
-* dark theme
 * Add minimum test
 * min&map js
 * bower support

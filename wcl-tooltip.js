@@ -85,6 +85,20 @@
                 } else if (el.detachEvent) {
                     el.detachEvent('onmouseout', handler);
                 }
+            },
+            addResizeEvent: function (el, handler) {
+                if (el.addEventListener) {
+                    el.addEventListener('resize', handler, false);
+                } else if (el.attachEvent) {
+                    el.attachEvent('onresize', handler);
+                }
+            },
+            removeResizeEvent: function (el, handler) {
+                if (el.removeEventListener) {
+                    el.removeEventListener('resize', handler, false);
+                } else if (el.detachEvent) {
+                    el.detachEvent('onresize', handler);
+                }
             }
         },
         DOM = function () {
@@ -246,17 +260,22 @@
                         container.id = 'wcl-tooltip-container';
                         document.body.appendChild(container);
 
-                        Event.addClickEvent(document, function (o) {
+                        Event.addClickEvent(document, function (m) {
                             if (createdElement &&
-                                ((!DOM.hasClass(o.target, 'wcl-tooltip-holder') &&
-                                !DOM.closest(o.target, '.wcl-tooltip-holder') &&
-                                !DOM.hasClass(o.target, '.wcl-tooltip') &&
-                                !DOM.closest(o.target, '.wcl-tooltip')) ||
-                                (DOM.hasClass(o.target, 'wcl-tooltip-close') || DOM.closest(o.target, '.wcl-tooltip-close')))
+                                ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') &&
+                                !DOM.closest(m.target, '.wcl-tooltip-holder') &&
+                                !DOM.hasClass(m.target, '.wcl-tooltip') &&
+                                !DOM.closest(m.target, '.wcl-tooltip')) ||
+                                (DOM.hasClass(m.target, 'wcl-tooltip-close') || DOM.closest(m.target, '.wcl-tooltip-close')))
                             ) {
                                 destroyTooltip();
                             }
                         });
+
+                        Event.addResizeEvent(window, function(m) {
+                            createdElement && calcPosition(holderElement, createdElement, o);
+                        });
+
                         firstInit = false;
                     }();
 

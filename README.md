@@ -17,13 +17,13 @@ window.addEventListener('load', function () {
 
 ## Option
 
-init options
+### init options
 
 | Option   | Values                                               | Description           |
 |----------|------------------------------------------------------|-----------------------|
-| type     | click (Default)<br> hover                            | tooltip show trigger. |
-| position | auto (Default)<br> top<br> left<br> bottom<br> right | tooltip position.     |
-| theme    | standard (Default)<br> dark                          | tooltip look.         |
+| type     | click (default)<br> hover                            | tooltip show trigger. |
+| position | auto (default)<br> top<br> left<br> bottom<br> right | tooltip position.     |
+| theme    | standard (default)<br> dark                          | tooltip look.         |
 
 ## Roadmap
 

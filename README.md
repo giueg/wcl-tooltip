@@ -11,7 +11,7 @@ npm install https://github.com/kawausokun/wcl-tooltip
 ```
 window.addEventListener('load', function () {
   var tooltip = require('wcl-tooltip');
-  tooltip.init('.tooltipped');
+  tooltip.init('.i-need-tooltip');
 });
 ```
 
@@ -19,19 +19,21 @@ window.addEventListener('load', function () {
 
 init options
 
-```
-{
-    position: 'auto' // top, bottom, left, right
-}
-```
+| Option   | Values                                               | Description           |
+|----------|------------------------------------------------------|-----------------------|
+| type     | click (Default)<br> hover                            | tooltip show trigger. |
+| position | auto (Default)<br> top<br> left<br> bottom<br> right | tooltip position.     |
+| theme    | standard (Default)<br> dark                          | tooltip look.         |
 
 ## Roadmap
 
+* arrow not display
 * sticky theme
 * bower support
+* direct html script
+* delay show
 
 ## TODO
 
-* Update README
 * Add minimum test
 * min&map js

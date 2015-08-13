@@ -41,7 +41,6 @@ window.addEventListener('load', function () {
 
 ## Roadmap
 
-* top-right,top-left,right-top,right-bottom,bottom-right,bottom-left,left-top,left-bottom position
 * arrow not display
 * ajax
 * sticky theme

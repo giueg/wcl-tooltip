@@ -13,8 +13,6 @@
 
 .wcl-tooltip {
   position: absolute;
-  width: auto;
-  height: auto;
   border: 1px solid #ccc;
   background-color: #fff;
   @include border-radius(2px);
@@ -55,8 +53,8 @@
 .wcl-tooltip-top:before, .wcl-tooltip-top-left:before, .wcl-tooltip-top-right:before { bottom: -1px; }
 .wcl-tooltip-bottom:before, .wcl-tooltip-bottom-left:before, .wcl-tooltip-bottom-right:before { top: -1px; }
 .wcl-tooltip-top:before, .wcl-tooltip-bottom:before { left: 50%; }
-.wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before { right: 14px; }
-.wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before { left: 14px; }
+.wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before { left: 14px; }
+.wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before { right: 14px; }
 
 .wcl-tooltip-left:before, .wcl-tooltip-left-top:before, .wcl-tooltip-left-bottom:before { right: -1px; }
 .wcl-tooltip-right:before, .wcl-tooltip-right-top:before, .wcl-tooltip-right-bottom:before { left: -1px; }
@@ -67,8 +65,8 @@
 .wcl-tooltip-top:after, .wcl-tooltip-top-left:after, .wcl-tooltip-top-right:after { bottom: 0; }
 .wcl-tooltip-bottom:after, .wcl-tooltip-bottom-left:after, .wcl-tooltip-bottom-right:after { top: 0; }
 .wcl-tooltip-top:after, .wcl-tooltip-bottom:after { left: 50%; }
-.wcl-tooltip-top-left:after, .wcl-tooltip-bottom-left:after { right: 15px; }
-.wcl-tooltip-top-right:after, .wcl-tooltip-bottom-right:after { left: 15px; }
+.wcl-tooltip-top-left:after, .wcl-tooltip-bottom-left:after { left: 15px; }
+.wcl-tooltip-top-right:after, .wcl-tooltip-bottom-right:after { right: 15px; }
 
 .wcl-tooltip-left:after, .wcl-tooltip-left-top:after, .wcl-tooltip-left-bottom:after { right: 0; }
 .wcl-tooltip-right:after, .wcl-tooltip-right-top:after, .wcl-tooltip-right-bottom:after { left: 0; }
@@ -76,45 +74,45 @@
 .wcl-tooltip-left-top:after, .wcl-tooltip-right-top:after { bottom: 15px; }
 .wcl-tooltip-left-bottom:after, .wcl-tooltip-right-bottom:after { top: 15px; }
 
-.wcl-tooltip-top:before {
+.wcl-tooltip-top:before, .wcl-tooltip-top-left:before, .wcl-tooltip-top-right:before {
   border-top: 10px solid #ccc;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
-.wcl-tooltip-top:after {
+.wcl-tooltip-top:after, .wcl-tooltip-top-left:after, .wcl-tooltip-top-right:after {
   border-top: 10px solid #fff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
 
-.wcl-tooltip-right:before {
+.wcl-tooltip-right:before, .wcl-tooltip-right-top:before, .wcl-tooltip-right-bottom:before {
   border-right: 10px solid #ccc;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-.wcl-tooltip-right:after {
+.wcl-tooltip-right:after, .wcl-tooltip-right-top:after, .wcl-tooltip-right-bottom:after {
   border-right: 10px solid #fff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
 
-.wcl-tooltip-bottom:before {
+.wcl-tooltip-bottom:before, .wcl-tooltip-bottom-left:before, .wcl-tooltip-bottom-right:before {
   border-bottom: 10px solid #ccc;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
-.wcl-tooltip-bottom:after {
+.wcl-tooltip-bottom:after, .wcl-tooltip-bottom-left:after, .wcl-tooltip-bottom-right:after {
   border-bottom: 10px solid #fff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
 }
 
-.wcl-tooltip-left:before {
+.wcl-tooltip-left:before, .wcl-tooltip-left-top:before, .wcl-tooltip-left-bottom:before {
   border-left: 10px solid #ccc;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
 }
-.wcl-tooltip-left:after {
+.wcl-tooltip-left:after, .wcl-tooltip-left-top:after, .wcl-tooltip-left-bottom:after {
   border-left: 10px solid #fff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent;
@@ -133,19 +131,19 @@
     margin: -7px;
   }
 
-  &.wcl-tooltip-top:after {
+  &.wcl-tooltip-top:after, &.wcl-tooltip-top-left:after, &.wcl-tooltip-top-right:after {
     border-top-color: $dark-color;
   }
 
-  &.wcl-tooltip-right:after {
+  &.wcl-tooltip-right:after, &.wcl-tooltip-right-top:after, &.wcl-tooltip-right-bottom:after {
     border-right-color: $dark-color;
   }
 
-  &.wcl-tooltip-bottom:after {
+  &.wcl-tooltip-bottom:after, &.wcl-tooltip-bottom-left:after, &.wcl-tooltip-bottom-right:after {
     border-bottom-color: $dark-color;
   }
 
-  &.wcl-tooltip-left:after {
+  &.wcl-tooltip-left:after, &.wcl-tooltip-left-top:after, &.wcl-tooltip-left-bottom:after {
     border-left-color: $dark-color;
   }
 }

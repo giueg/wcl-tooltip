@@ -224,20 +224,52 @@
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
                     switch (position) {
+                        case 'top-left':
+                            tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left) + 'px';
+                            break;
                         case 'top':
                             tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
+                            break;
+                        case 'top-right':
+                            tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width - tooltipRect.width) + 'px';
+                            break;
+                        case 'bottom-left':
+                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left) + 'px';
                             break;
                         case 'bottom':
                             tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
                             break;
+                        case 'bottom-right':
+                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width - tooltipRect.width) + 'px';
+                            break;
+                        case 'right-top':
+                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
+                            break;
                         case 'right':
                             tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
                             break;
+                        case 'right-bottom':
+                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
+                            break;
+                        case 'left-top':
+                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
+                            break;
                         case 'left':
                             tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
+                            tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
+                            break;
+                        case 'left-bottom':
+                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
                             break;
                         default :

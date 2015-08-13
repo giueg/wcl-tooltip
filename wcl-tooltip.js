@@ -10,8 +10,9 @@
                 for (var i = 0; i < len; i++) {
                     var arg = args[i];
                     for (var key in arg) {
-                        if (arg.hasOwnProperty(key))
+                        if (arg.hasOwnProperty(key)) {
                             ret[key] = arg[key];
+                        }
                     }
                 }
 
@@ -126,10 +127,11 @@
                     return null;
                 },
                 hasClass: function (el, className) {
-                    if (el.classList)
+                    if (el.classList) {
                         return el.classList.contains(className);
-                    else
+                    } else {
                         return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
+                    }
                 },
                 addClass: function (el, className) {
                     if (el.classList) {

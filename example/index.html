@@ -17,6 +17,33 @@
       width: 30px;
       height: 30px;
     }
+
+    .tooltip-click-menu {
+      float: right;
+    }
+
+    #menu ul {
+      list-style-type: none;
+      margin: 5px 0;
+      padding: 0;
+    }
+
+    hr {
+      border: 0;
+      border-top: 1px solid #cfcfcf;
+      height: 0;
+      margin: 0;
+      padding: 0;
+   }
+
+    #menu li a {
+      width: 150px;
+      display: block;
+      text-align: center;
+    }
+    #menu li a:hover {
+      background-color: #ececec;
+    }
   </style>
 </head>
 <body>
@@ -28,7 +55,6 @@
   <a href="http://kumamon-official.jp">Kuma-mon official homepage</a><br>
   <img src="http://kumamon-official.jp/wp-content/themes/kumamon/images/top/img_main35.jpg" alt="kuma-mon"><br/>
 </div>
-<!--</div>-->
 <div class="container">
   <div class="box"></div>
   <div class="box tooltip-hover-top-left-dark" style="background-color: darkred;" data-wcltip-text="position: top-left"></div>
@@ -59,6 +85,23 @@
   <div class="box tooltip-hover-bottom-dark" style="background-color: black;" data-wcltip-text="position: bottom"></div>
   <div class="box tooltip-hover-bottom-right-dark" style="background-color: black;" data-wcltip-text="position: bottom-right"></div>
   <div class="box"></div>
+</div>
+<div>
+  <a href="#" class="tooltip-click-menu" data-wcltip-html-src="menu-src">Menu</a>
+  <div id="menu-src" style="display: none;">
+    <div id="menu">
+      <ul>
+        <li><a href="#">link1</a></li>
+        <li><a href="#">link2</a></li>
+        <li><a href="#">link3</a></li>
+        <li><a href="#">link4</a></li>
+      </ul>
+      <hr>
+      <ul>
+        <li><a href="#">link5</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
 </body>
 </html>

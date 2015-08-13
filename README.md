@@ -43,10 +43,10 @@ window.addEventListener('load', function () {
 
 * arrow not display
 * ajax
-* sticky theme
 * bower support
 * direct html script
 * delay show
+* sticky theme
 
 ## TODO
 

@@ -312,7 +312,9 @@
                     }();
 
                     var obj = document.querySelectorAll(selector),
-                        f = function () {
+                        f = function (e) {
+                            e.preventDefault();
+
                             if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
 
                             var element = document.createElement('div');

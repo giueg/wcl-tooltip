@@ -1,4 +1,7 @@
-+function () {
+/*jshint multistr:true */
+/*jshint expr:true */
+
+(function () {
     "use strict";
 
     var _ = {
@@ -102,7 +105,7 @@
                 }
             }
         },
-        DOM = function () {
+        DOM = (function () {
             var matchesFn;
             // find vendor prefix
             ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
@@ -148,7 +151,7 @@
                     }
                 }
             };
-        }(),
+        }()),
         Effect = {
             fadeIn: function (el) {
                 el.style.opacity = 0;
@@ -198,7 +201,7 @@
             bodyHtml: "\
              <div class='wcl-tooltip-body'>__BODY__</div>\
             ",
-            init: function () {
+            init: (function () {
                 var createdElement;
                 var holderElement;
                 var firstInit = true;
@@ -208,12 +211,12 @@
                         tooltipRect = tooltip.getBoundingClientRect(),
                         scrollX = window.scrollX,
                         scrollY = window.scrollY,
-                        position = option.position === 'auto' ? function(t) {
+                        position = option.position === 'auto' ? (function(t) {
                             if (t.top > t.bottom) {
                                 return 'top';
                             }
                             return 'bottom';
-                        }(targetRect) : option.position;
+                        }(targetRect)) : option.position;
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
@@ -283,7 +286,7 @@
                 return function (selector, option) {
                     var o = _.extend(Tooltip.defaultOption, option);
 
-                    firstInit && -function() {
+                    firstInit && (function() {
                         var container = document.createElement('div');
                         container.id = 'wcl-tooltip-container';
                         document.body.appendChild(container);
@@ -305,7 +308,7 @@
                         });
 
                         firstInit = false;
-                    }();
+                    }());
 
                     var obj = document.querySelectorAll(selector),
                         f = function (e) {
@@ -356,8 +359,8 @@
                         }
                     }
                 };
-            }()
+            }())
         };
 
     module.exports = Tooltip;
-}();
+}());

@@ -86,7 +86,10 @@ window.addEventListener('load', function () {
 });
 
 },{"wcl-tooltip":2}],2:[function(require,module,exports){
-+function () {
+/*jshint multistr:true */
+/*jshint expr:true */
+
+(function () {
     "use strict";
 
     var _ = {
@@ -190,7 +193,7 @@ window.addEventListener('load', function () {
                 }
             }
         },
-        DOM = function () {
+        DOM = (function () {
             var matchesFn;
             // find vendor prefix
             ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
@@ -236,7 +239,7 @@ window.addEventListener('load', function () {
                     }
                 }
             };
-        }(),
+        }()),
         Effect = {
             fadeIn: function (el) {
                 el.style.opacity = 0;
@@ -286,7 +289,7 @@ window.addEventListener('load', function () {
             bodyHtml: "\
              <div class='wcl-tooltip-body'>__BODY__</div>\
             ",
-            init: function () {
+            init: (function () {
                 var createdElement;
                 var holderElement;
                 var firstInit = true;
@@ -296,12 +299,12 @@ window.addEventListener('load', function () {
                         tooltipRect = tooltip.getBoundingClientRect(),
                         scrollX = window.scrollX,
                         scrollY = window.scrollY,
-                        position = option.position === 'auto' ? function(t) {
+                        position = option.position === 'auto' ? (function(t) {
                             if (t.top > t.bottom) {
                                 return 'top';
                             }
                             return 'bottom';
-                        }(targetRect) : option.position;
+                        }(targetRect)) : option.position;
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
@@ -371,7 +374,7 @@ window.addEventListener('load', function () {
                 return function (selector, option) {
                     var o = _.extend(Tooltip.defaultOption, option);
 
-                    firstInit && -function() {
+                    firstInit && (function() {
                         var container = document.createElement('div');
                         container.id = 'wcl-tooltip-container';
                         document.body.appendChild(container);
@@ -393,7 +396,7 @@ window.addEventListener('load', function () {
                         });
 
                         firstInit = false;
-                    }();
+                    }());
 
                     var obj = document.querySelectorAll(selector),
                         f = function (e) {
@@ -444,9 +447,9 @@ window.addEventListener('load', function () {
                         }
                     }
                 };
-            }()
+            }())
         };
 
     module.exports = Tooltip;
-}();
+}());
 },{}]},{},[1]);

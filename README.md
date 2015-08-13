@@ -1,5 +1,7 @@
 # wcl-tooltip
 
+[![GitHub version](https://badge.fury.io/gh/kawausokun%2Fwcl-tooltip.svg)](http://badge.fury.io/gh/kawausokun%2Fwcl-tooltip)
+
 ## Installation
 
 ```sh

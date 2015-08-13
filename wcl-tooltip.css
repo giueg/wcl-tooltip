@@ -30,98 +30,109 @@
   float: right;
   margin-top: 2px; }
 
-.wcl-tooltip-top:before {
+.wcl-tooltip:before, .wcl-tooltip:after {
   content: "";
   position: absolute;
   width: 0;
   height: 0;
-  bottom: -11px;
-  left: 50%;
-  margin-left: -10px;
+  margin: -10px; }
+
+.wcl-tooltip-top:before, .wcl-tooltip-top-left:before, .wcl-tooltip-top-right:before {
+  bottom: -1px; }
+
+.wcl-tooltip-bottom:before, .wcl-tooltip-bottom-left:before, .wcl-tooltip-bottom-right:before {
+  top: -1px; }
+
+.wcl-tooltip-top:before, .wcl-tooltip-bottom:before {
+  left: 50%; }
+
+.wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before {
+  right: 14px; }
+
+.wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before {
+  left: 14px; }
+
+.wcl-tooltip-left:before, .wcl-tooltip-left-top:before, .wcl-tooltip-left-bottom:before {
+  right: -1px; }
+
+.wcl-tooltip-right:before, .wcl-tooltip-right-top:before, .wcl-tooltip-right-bottom:before {
+  left: -1px; }
+
+.wcl-tooltip-left:before, .wcl-tooltip-right:before {
+  top: 50%; }
+
+.wcl-tooltip-left-top:before, .wcl-tooltip-right-top:before {
+  bottom: 14px; }
+
+.wcl-tooltip-left-bottom:before, .wcl-tooltip-right-bottom:before {
+  top: 14px; }
+
+.wcl-tooltip-top:after, .wcl-tooltip-top-left:after, .wcl-tooltip-top-right:after {
+  bottom: 0; }
+
+.wcl-tooltip-bottom:after, .wcl-tooltip-bottom-left:after, .wcl-tooltip-bottom-right:after {
+  top: 0; }
+
+.wcl-tooltip-top:after, .wcl-tooltip-bottom:after {
+  left: 50%; }
+
+.wcl-tooltip-top-left:after, .wcl-tooltip-bottom-left:after {
+  right: 15px; }
+
+.wcl-tooltip-top-right:after, .wcl-tooltip-bottom-right:after {
+  left: 15px; }
+
+.wcl-tooltip-left:after, .wcl-tooltip-left-top:after, .wcl-tooltip-left-bottom:after {
+  right: 0; }
+
+.wcl-tooltip-right:after, .wcl-tooltip-right-top:after, .wcl-tooltip-right-bottom:after {
+  left: 0; }
+
+.wcl-tooltip-left:after, .wcl-tooltip-right:after {
+  top: 50%; }
+
+.wcl-tooltip-left-top:after, .wcl-tooltip-right-top:after {
+  bottom: 15px; }
+
+.wcl-tooltip-left-bottom:after, .wcl-tooltip-right-bottom:after {
+  top: 15px; }
+
+.wcl-tooltip-top:before {
   border-top: 10px solid #ccc;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent; }
 
 .wcl-tooltip-top:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  bottom: -10px;
-  left: 50%;
-  margin-left: -10px;
   border-top: 10px solid #fff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent; }
 
 .wcl-tooltip-right:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 50%;
-  left: -11px;
-  margin-top: -10px;
   border-right: 10px solid #ccc;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; }
 
 .wcl-tooltip-right:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 50%;
-  left: -10px;
-  margin-top: -10px;
   border-right: 10px solid #fff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; }
 
 .wcl-tooltip-bottom:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -11px;
-  left: 50%;
-  margin-left: -10px;
   border-bottom: 10px solid #ccc;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent; }
 
 .wcl-tooltip-bottom:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: -10px;
-  left: 50%;
-  margin-left: -10px;
   border-bottom: 10px solid #fff;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent; }
 
 .wcl-tooltip-left:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 50%;
-  right: -11px;
-  margin-top: -10px;
   border-left: 10px solid #ccc;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; }
 
 .wcl-tooltip-left:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  top: 50%;
-  right: -10px;
-  margin-top: -10px;
   border-left: 10px solid #fff;
   border-top: 10px solid transparent;
   border-bottom: 10px solid transparent; }
@@ -136,32 +147,13 @@
   -ms-border-radius: 3px;
   border-radius: 3px; }
   .wcl-tooltip-theme-dark:before, .wcl-tooltip-theme-dark:after {
-    border-width: 7px; }
-  .wcl-tooltip-theme-dark.wcl-tooltip-top:before {
-    bottom: -8px;
-    margin-left: -8px; }
+    border-width: 7px;
+    margin: -7px; }
   .wcl-tooltip-theme-dark.wcl-tooltip-top:after {
-    bottom: -7px;
-    margin-left: -8px;
     border-top-color: #212121; }
-  .wcl-tooltip-theme-dark.wcl-tooltip-right:before {
-    left: -8px;
-    margin-top: -8px; }
   .wcl-tooltip-theme-dark.wcl-tooltip-right:after {
-    left: -7px;
-    margin-top: -8px;
     border-right-color: #212121; }
-  .wcl-tooltip-theme-dark.wcl-tooltip-bottom:before {
-    top: -8px;
-    margin-left: -8px; }
   .wcl-tooltip-theme-dark.wcl-tooltip-bottom:after {
-    top: -7px;
-    margin-left: -8px;
     border-bottom-color: #212121; }
-  .wcl-tooltip-theme-dark.wcl-tooltip-left:before {
-    right: -8px;
-    margin-top: -8px; }
   .wcl-tooltip-theme-dark.wcl-tooltip-left:after {
-    right: -7px;
-    margin-top: -8px;
     border-left-color: #212121; }

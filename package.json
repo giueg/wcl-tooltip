@@ -1,7 +1,12 @@
 {
   "name": "wcl-tooltip",
-  "version": "0.0.3",
-  "description": "",
+  "version": "0.1.0",
+  "description": "Simple JavaScript&CSS tooltip",
+  "keywords": [
+    "javascript",
+    "tooltip",
+    "browser"
+  ],
   "main": "wcl-tooltip.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,5 +14,9 @@
     "release": "npm run example-build"
   },
   "author": "matsukawa",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kawausokun/wcl-tooltip.git"
+  }
 }

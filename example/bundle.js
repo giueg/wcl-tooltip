@@ -109,6 +109,33 @@ window.addEventListener('load', function () {
 
                 return ret;
             },
+            includes: function (array, searchElement) {
+                var O = Object(array);
+                var len = parseInt(O.length) || 0;
+                if (len === 0) {
+                    return false;
+                }
+                var n = parseInt(arguments[1]) || 0;
+                var k;
+                if (n >= 0) {
+                    k = n;
+                } else {
+                    k = len + n;
+                    if (k < 0) {
+                        k = 0;
+                    }
+                }
+                var currentElement;
+                while (k < len) {
+                    currentElement = O[k];
+                    if (searchElement === currentElement ||
+                        (searchElement !== searchElement && currentElement !== currentElement)) {
+                        return true;
+                    }
+                    k++;
+                }
+                return false;
+            },
             escapeHtml: (function () {
                 var escapeMap = {
                     '&': '&amp;',
@@ -308,57 +335,43 @@ window.addEventListener('load', function () {
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
-                    switch (position) {
-                        case 'top-left':
-                        case 'top':
-                        case 'top-right':
-                            tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
-                            break;
-                        case 'bottom-left':
-                        case 'bottom':
-                        case 'bottom-right':
-                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
-                            break;
-                        case 'right-top':
-                        case 'left-top':
-                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
-                            break;
-                        case 'right':
-                        case 'left':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
-                            break;
-                        case 'right-bottom':
-                        case 'left-bottom':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
-                            break;
-                        default:
-                    }
+                    tooltip.style.top = (function (position) {
+                            if (_.includes(['top-left', 'top', 'top-right'], position)) {
+                                return scrollY + targetRect.top - tooltipRect.height - 6;
+                            }
+                            if (_.includes(['bottom-left', 'bottom', 'bottom-right'], position)) {
+                                return scrollY + targetRect.bottom + 6;
+                            }
+                            if (_.includes(['right-top', 'left-top'], position)) {
+                                return scrollY + targetRect.top;
+                            }
+                            if (_.includes(['right', 'left'], position)) {
+                                return scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2;
+                            }
+                            if (_.includes(['right-bottom', 'left-bottom'], position)) {
+                                return scrollY + targetRect.top + targetRect.height - tooltipRect.height;
+                            }
+                            return 0;
+                        }(position)) + 'px';
 
-                    switch (position) {
-                        case 'top-left':
-                        case 'bottom-left':
-                            tooltip.style.left = (scrollX + targetRect.left) + 'px';
-                            break;
-                        case 'top':
-                        case 'bottom':
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
-                            break;
-                        case 'top-right':
-                        case 'bottom-right':
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width - tooltipRect.width) + 'px';
-                            break;
-                        case 'right-top':
-                        case 'right':
-                        case 'right-bottom':
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
-                            break;
-                        case 'left-top':
-                        case 'left':
-                        case 'left-bottom':
-                            tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
-                            break;
-                        default :
-                    }
+                    tooltip.style.left = (function (position) {
+                            if (_.includes(['top-left', 'bottom-left'], position)) {
+                                return scrollX + targetRect.left;
+                            }
+                            if (_.includes(['top', 'bottom'], position)) {
+                                return scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2;
+                            }
+                            if (_.includes(['top-right', 'bottom-right'], position)) {
+                                return scrollX + targetRect.left + targetRect.width - tooltipRect.width;
+                            }
+                            if (_.includes(['right-top', 'right', 'right-bottom'], position)) {
+                                return scrollX + targetRect.left + targetRect.width + 6;
+                            }
+                            if (_.includes(['left-top', 'left', 'left-bottom'], position)) {
+                                return scrollX + targetRect.left - tooltipRect.width - 6;
+                            }
+                            return 0;
+                        }(position)) + 'px';
                 }
 
                 function destroyTooltip() {
@@ -396,9 +409,7 @@ window.addEventListener('load', function () {
                     }());
 
                     var obj = document.querySelectorAll(selector),
-                        createElement = function () {
-                            var element = document.createElement('div');
-
+                        buildHtml = function () {
                             var html = '';
                             if (this.hasAttribute('data-wcltip-text')) {
                                 html = Tooltip.bodyHtml.replace('__BODY__', _.escapeHtml(this.getAttribute('data-wcltip-text')));
@@ -410,7 +421,13 @@ window.addEventListener('load', function () {
                                     html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
                                 }
                             }
-                            element.innerHTML = html;
+
+                            return html;
+                        },
+                        createElement = function () {
+                            var element = document.createElement('div');
+
+                            element.innerHTML = buildHtml.call(this);
 
                             DOM.addClass(element, 'wcl-tooltip');
                             if (o.theme === 'dark') {

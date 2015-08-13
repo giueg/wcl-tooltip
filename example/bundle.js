@@ -245,7 +245,7 @@ window.addEventListener('load', function () {
                 el.style.opacity = 0;
 
                 var last = +new Date();
-                var tick = function() {
+                var tick = function () {
                     el.style.opacity = +el.style.opacity + (new Date() - last) / 60;
                     last = +new Date();
 
@@ -260,7 +260,7 @@ window.addEventListener('load', function () {
                 el.style.opacity = 1;
 
                 var last = +new Date();
-                var tick = function() {
+                var tick = function () {
                     el.style.opacity = +el.style.opacity - (new Date() - last) / 60;
                     last = +new Date();
 
@@ -299,7 +299,7 @@ window.addEventListener('load', function () {
                         tooltipRect = tooltip.getBoundingClientRect(),
                         scrollX = window.scrollX,
                         scrollY = window.scrollY,
-                        position = option.position === 'auto' ? (function(t) {
+                        position = option.position === 'auto' ? (function (t) {
                             if (t.top > t.bottom) {
                                 return 'top';
                             }
@@ -310,51 +310,51 @@ window.addEventListener('load', function () {
 
                     switch (position) {
                         case 'top-left':
+                        case 'top':
+                        case 'top-right':
                             tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
+                            break;
+                        case 'bottom-left':
+                        case 'bottom':
+                        case 'bottom-right':
+                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
+                            break;
+                        case 'right-top':
+                        case 'left-top':
+                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
+                            break;
+                        case 'right':
+                        case 'left':
+                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
+                            break;
+                        case 'right-bottom':
+                        case 'left-bottom':
+                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
+                            break;
+                        default:
+                    }
+
+                    switch (position) {
+                        case 'top-left':
+                        case 'bottom-left':
                             tooltip.style.left = (scrollX + targetRect.left) + 'px';
                             break;
                         case 'top':
-                            tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
+                        case 'bottom':
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
                             break;
                         case 'top-right':
-                            tooltip.style.top = (scrollY + targetRect.top - tooltipRect.height - 6) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width - tooltipRect.width) + 'px';
-                            break;
-                        case 'bottom-left':
-                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left) + 'px';
-                            break;
-                        case 'bottom':
-                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width / 2 - tooltipRect.width / 2) + 'px';
-                            break;
                         case 'bottom-right':
-                            tooltip.style.top = (scrollY + targetRect.bottom + 6) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width - tooltipRect.width) + 'px';
                             break;
                         case 'right-top':
-                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
-                            break;
                         case 'right':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
-                            break;
                         case 'right-bottom':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left + targetRect.width + 6) + 'px';
                             break;
                         case 'left-top':
-                            tooltip.style.top = (scrollY + targetRect.top) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
-                            break;
                         case 'left':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height / 2 - tooltipRect.height / 2) + 'px';
-                            tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
-                            break;
                         case 'left-bottom':
-                            tooltip.style.top = (scrollY + targetRect.top + targetRect.height - tooltipRect.height) + 'px';
                             tooltip.style.left = (scrollX + targetRect.left - tooltipRect.width - 6) + 'px';
                             break;
                         default :
@@ -374,24 +374,21 @@ window.addEventListener('load', function () {
                 return function (selector, option) {
                     var o = _.extend(Tooltip.defaultOption, option);
 
-                    firstInit && (function() {
+                    firstInit && (function () {
                         var container = document.createElement('div');
                         container.id = 'wcl-tooltip-container';
                         document.body.appendChild(container);
 
                         Event.addClickEvent(document, function (m) {
                             if (createdElement &&
-                                ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') &&
-                                !DOM.closest(m.target, '.wcl-tooltip-holder') &&
-                                !DOM.hasClass(m.target, '.wcl-tooltip') &&
-                                !DOM.closest(m.target, '.wcl-tooltip')) ||
+                                ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') && !DOM.closest(m.target, '.wcl-tooltip-holder') && !DOM.hasClass(m.target, '.wcl-tooltip') && !DOM.closest(m.target, '.wcl-tooltip')) ||
                                 (DOM.hasClass(m.target, 'wcl-tooltip-close') || DOM.closest(m.target, '.wcl-tooltip-close')))
                             ) {
                                 destroyTooltip();
                             }
                         });
 
-                        Event.addResizeEvent(window, function() {
+                        Event.addResizeEvent(window, function () {
                             createdElement && calcPosition(holderElement, createdElement, o);
                         });
 
@@ -399,13 +396,7 @@ window.addEventListener('load', function () {
                     }());
 
                     var obj = document.querySelectorAll(selector),
-                        f = function (e) {
-                            e.preventDefault();
-
-                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) {
-                                return;
-                            }
-
+                        createElement = function () {
                             var element = document.createElement('div');
 
                             var html = '';
@@ -426,6 +417,17 @@ window.addEventListener('load', function () {
                                 DOM.addClass(element, 'wcl-tooltip-theme-dark');
                             }
 
+                            return element;
+                        },
+                        showTooltip = function (e) {
+                            e.preventDefault();
+
+                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) {
+                                return;
+                            }
+
+                            var element = createElement.call(this);
+
                             Effect.fadeIn(element);
 
                             document.getElementById('wcl-tooltip-container').appendChild(element);
@@ -440,10 +442,10 @@ window.addEventListener('load', function () {
 
                     for (var i = 0, length = obj.length; i < length; i++) {
                         if (o.type === 'hover') {
-                            Event.addMouseoverEvent(obj.item(i), f);
+                            Event.addMouseoverEvent(obj.item(i), showTooltip);
                             Event.addMouseoutEvent(obj.item(i), destroyTooltip);
                         } else if (o.type === 'click') {
-                            Event.addClickEvent(obj.item(i), f);
+                            Event.addClickEvent(obj.item(i), showTooltip);
                         }
                     }
                 };

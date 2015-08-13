@@ -223,13 +223,15 @@ window.addEventListener('load', function () {
         DOM = (function () {
             var matchesFn;
             // find vendor prefix
-            ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-                if (typeof document.body[fn] === 'function') {
-                    matchesFn = fn;
-                    return true;
+            ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(
+                function (fn) {
+                    if (typeof document.body[fn] === 'function') {
+                        matchesFn = fn;
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
-            });
+            );
 
             return {
                 closest: function (el, selector) {
@@ -247,9 +249,8 @@ window.addEventListener('load', function () {
                 hasClass: function (el, className) {
                     if (el.classList) {
                         return el.classList.contains(className);
-                    } else {
-                        return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
                     }
+                    return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
                 },
                 addClass: function (el, className) {
                     if (el.classList) {
@@ -262,7 +263,9 @@ window.addEventListener('load', function () {
                     if (el.classList) {
                         el.classList.remove(className);
                     } else {
-                        el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
+                        el.className = el.className.replace(
+                            new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' '
+                        );
                     }
                 }
             };
@@ -394,8 +397,11 @@ window.addEventListener('load', function () {
 
                         Event.addClickEvent(document, function (m) {
                             if (createdElement &&
-                                ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') && !DOM.closest(m.target, '.wcl-tooltip-holder') && !DOM.hasClass(m.target, '.wcl-tooltip') && !DOM.closest(m.target, '.wcl-tooltip')) ||
-                                (DOM.hasClass(m.target, 'wcl-tooltip-close') || DOM.closest(m.target, '.wcl-tooltip-close')))
+                                ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') &&
+                                !DOM.closest(m.target, '.wcl-tooltip-holder') &&
+                                !DOM.hasClass(m.target, '.wcl-tooltip') && !DOM.closest(m.target, '.wcl-tooltip')) ||
+                                (DOM.hasClass(m.target, 'wcl-tooltip-close') ||
+                                DOM.closest(m.target, '.wcl-tooltip-close')))
                             ) {
                                 destroyTooltip();
                             }
@@ -410,19 +416,28 @@ window.addEventListener('load', function () {
 
                     var obj = document.querySelectorAll(selector),
                         buildHtml = function () {
-                            var html = '';
                             if (this.hasAttribute('data-wcltip-text')) {
-                                html = Tooltip.bodyHtml.replace('__BODY__', _.escapeHtml(this.getAttribute('data-wcltip-text')));
-                            } else if (this.hasAttribute('data-wcltip-text-src')) {
-                                html = Tooltip.bodyHtml.replace('__BODY__', _.escapeHtml(document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML));
-                            } else if (this.hasAttribute('data-wcltip-html-src')) {
-                                html = Tooltip.bodyHtml.replace('__BODY__', document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
+                                return Tooltip.bodyHtml.replace('__BODY__',
+                                    _.escapeHtml(this.getAttribute('data-wcltip-text')));
+                            }
+                            if (this.hasAttribute('data-wcltip-text-src')) {
+                                return Tooltip.bodyHtml.replace('__BODY__',
+                                    _.escapeHtml(
+                                        document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML
+                                    )
+                                );
+                            }
+                            if (this.hasAttribute('data-wcltip-html-src')) {
+                                var html = Tooltip.bodyHtml.replace('__BODY__',
+                                    document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
                                 if (this.hasAttribute('data-wcltip-title')) {
-                                    html = Tooltip.headerHtml.replace('__TITLE__', this.getAttribute('data-wcltip-title')) + html;
+                                    html = Tooltip.headerHtml.replace('__TITLE__',
+                                            this.getAttribute('data-wcltip-title')) + html;
                                 }
+                                return html;
                             }
 
-                            return html;
+                            return '';
                         },
                         createElement = function () {
                             var element = document.createElement('div');

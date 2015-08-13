@@ -53,14 +53,14 @@
 .wcl-tooltip-top:before, .wcl-tooltip-top-left:before, .wcl-tooltip-top-right:before { bottom: -1px; }
 .wcl-tooltip-bottom:before, .wcl-tooltip-bottom-left:before, .wcl-tooltip-bottom-right:before { top: -1px; }
 .wcl-tooltip-top:before, .wcl-tooltip-bottom:before { left: 50%; }
-.wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before { left: 14px; }
-.wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before { right: 14px; }
+.wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before { left: 15px; }
+.wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before { right: 15px; }
 
 .wcl-tooltip-left:before, .wcl-tooltip-left-top:before, .wcl-tooltip-left-bottom:before { right: -1px; }
 .wcl-tooltip-right:before, .wcl-tooltip-right-top:before, .wcl-tooltip-right-bottom:before { left: -1px; }
 .wcl-tooltip-left:before, .wcl-tooltip-right:before { top: 50%; }
-.wcl-tooltip-left-top:before, .wcl-tooltip-right-top:before { bottom: 14px; }
-.wcl-tooltip-left-bottom:before, .wcl-tooltip-right-bottom:before { top: 14px; }
+.wcl-tooltip-left-top:before, .wcl-tooltip-right-top:before { bottom: 15px; }
+.wcl-tooltip-left-bottom:before, .wcl-tooltip-right-bottom:before { top: 15px; }
 
 .wcl-tooltip-top:after, .wcl-tooltip-top-left:after, .wcl-tooltip-top-right:after { bottom: 0; }
 .wcl-tooltip-bottom:after, .wcl-tooltip-bottom-left:after, .wcl-tooltip-bottom-right:after { top: 0; }

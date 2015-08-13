@@ -45,10 +45,10 @@
   left: 50%; }
 
 .wcl-tooltip-top-left:before, .wcl-tooltip-bottom-left:before {
-  left: 14px; }
+  left: 15px; }
 
 .wcl-tooltip-top-right:before, .wcl-tooltip-bottom-right:before {
-  right: 14px; }
+  right: 15px; }
 
 .wcl-tooltip-left:before, .wcl-tooltip-left-top:before, .wcl-tooltip-left-bottom:before {
   right: -1px; }
@@ -60,10 +60,10 @@
   top: 50%; }
 
 .wcl-tooltip-left-top:before, .wcl-tooltip-right-top:before {
-  bottom: 14px; }
+  bottom: 15px; }
 
 .wcl-tooltip-left-bottom:before, .wcl-tooltip-right-bottom:before {
-  top: 14px; }
+  top: 15px; }
 
 .wcl-tooltip-top:after, .wcl-tooltip-top-left:after, .wcl-tooltip-top-right:after {
   bottom: 0; }

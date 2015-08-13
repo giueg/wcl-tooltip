@@ -105,7 +105,7 @@
             var matchesFn;
             // find vendor prefix
             ['matches', 'webkitMatchesSelector', 'mozMatchesSelector', 'msMatchesSelector', 'oMatchesSelector'].some(function (fn) {
-                if (typeof document.body[fn] == 'function') {
+                if (typeof document.body[fn] === 'function') {
                     matchesFn = fn;
                     return true;
                 }
@@ -157,7 +157,7 @@
                     last = +new Date();
 
                     if (+el.style.opacity < 1) {
-                        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+                        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
                     }
                 };
 
@@ -172,19 +172,11 @@
                     last = +new Date();
 
                     if (+el.style.opacity > 0) {
-                        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16)
+                        (window.requestAnimationFrame && requestAnimationFrame(tick)) || setTimeout(tick, 16);
                     }
                 };
 
                 tick();
-            }
-        },
-        Bounds = {
-            viewport: function () {
-                return {
-                    width: window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
-                    height: window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
-                }
             }
         },
         Tooltip = {
@@ -214,12 +206,12 @@
                         tooltipRect = tooltip.getBoundingClientRect(),
                         scrollX = window.scrollX,
                         scrollY = window.scrollY,
-                        position = option.position === 'auto' ? function(t, d) {
+                        position = option.position === 'auto' ? function(t) {
                             if (t.top > t.bottom) {
                                 return 'top';
                             }
                             return 'bottom';
-                        }(targetRect, tooltipRect) : option.position;
+                        }(targetRect) : option.position;
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
@@ -277,7 +269,9 @@
                 }
 
                 function destroyTooltip() {
-                    if (!createdElement) return;
+                    if (!createdElement) {
+                        return;
+                    }
                     DOM.removeClass(holderElement, 'wcl-tooltip-holder');
                     createdElement.remove();
                     createdElement = null;
@@ -304,7 +298,7 @@
                             }
                         });
 
-                        Event.addResizeEvent(window, function(m) {
+                        Event.addResizeEvent(window, function() {
                             createdElement && calcPosition(holderElement, createdElement, o);
                         });
 
@@ -315,7 +309,9 @@
                         f = function (e) {
                             e.preventDefault();
 
-                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) return;
+                            if (DOM.hasClass(this, 'wcl-tooltip-holder')) {
+                                return;
+                            }
 
                             var element = document.createElement('div');
 

@@ -36,7 +36,7 @@ window.addEventListener('load', function () {
 | Option   | Values                                               | Description           |
 |----------|------------------------------------------------------|-----------------------|
 | type     | click (default)<br> hover                            | tooltip show trigger. |
-| position | auto (default)<br> top<br> left<br> bottom<br> right | tooltip position.     |
+| position | auto (default)<br>top-left<br>top<br>top-right<br>left-top<br>left<br>left-bottom<br>bottom-left<br>bottom<br>bottom-right<br>right-top<br>right<br>right-bottom     | tooltip position.     |
 | theme    | standard (default)<br> dark                          | tooltip look.         |
 
 ## Roadmap

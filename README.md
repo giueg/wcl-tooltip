@@ -38,9 +38,10 @@ window.addEventListener('load', function () {
 
 | Option   | Values                                               | Description           |
 |----------|------------------------------------------------------|-----------------------|
-| type     | click (default)<br> hover                            | tooltip show trigger. |
-| position | auto (default)<br>top-left<br>top<br>top-right<br>left-top<br>left<br>left-bottom<br>bottom-left<br>bottom<br>bottom-right<br>right-top<br>right<br>right-bottom     | tooltip position.     |
-| theme    | standard (default)<br> dark                          | tooltip look.         |
+| type     | click (default)<br> hover                            | Tooltip show trigger. |
+| position | auto (default)<br>top-left<br>top<br>top-right<br>left-top<br>left<br>left-bottom<br>bottom-left<br>bottom<br>bottom-right<br>right-top<br>right<br>right-bottom     | Tooltip position.     |
+| theme    | standard (default)<br> dark                          | Tooltip look.         |
+| arrow    | true (default)<br> false                             | Show arrow.         |
 
 ## License
 
@@ -52,10 +53,9 @@ window.addEventListener('load', function () {
 
 ## Roadmap
 
-* arrow not display
 * ajax
 * bower support
-* direct html script
+* direct html script src
 * delay show
 * sticky theme
 

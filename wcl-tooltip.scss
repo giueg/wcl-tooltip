@@ -147,3 +147,9 @@
     border-left-color: $dark-color;
   }
 }
+
+.wcl-tooltip.wcl-tooltip-noarrow {
+  &:before, &:after {
+    content: none;
+  }
+}

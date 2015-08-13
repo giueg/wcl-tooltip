@@ -218,7 +218,8 @@
             defaultOption: {
                 type: 'click',
                 position: 'auto',
-                theme: 'standard'
+                theme: 'standard',
+                arrow: true
             },
             headerHtml: "\
              <div class='wcl-tooltip-header'>\
@@ -252,10 +253,10 @@
 
                     tooltip.style.top = (function (position) {
                             if (_.includes(['top-left', 'top', 'top-right'], position)) {
-                                return scrollY + targetRect.top - tooltipRect.height - 6;
+                                return scrollY + targetRect.top - tooltipRect.height - (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['bottom-left', 'bottom', 'bottom-right'], position)) {
-                                return scrollY + targetRect.bottom + 6;
+                                return scrollY + targetRect.bottom + (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['right-top', 'left-top'], position)) {
                                 return scrollY + targetRect.top;
@@ -280,10 +281,10 @@
                                 return scrollX + targetRect.left + targetRect.width - tooltipRect.width;
                             }
                             if (_.includes(['right-top', 'right', 'right-bottom'], position)) {
-                                return scrollX + targetRect.left + targetRect.width + 6;
+                                return scrollX + targetRect.left + targetRect.width + (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['left-top', 'left', 'left-bottom'], position)) {
-                                return scrollX + targetRect.left - tooltipRect.width - 6;
+                                return scrollX + targetRect.left - tooltipRect.width - (option.arrow ? 6 : 1);
                             }
                             return 0;
                         }(position)) + 'px';
@@ -359,6 +360,9 @@
                             DOM.addClass(element, 'wcl-tooltip');
                             if (o.theme === 'dark') {
                                 DOM.addClass(element, 'wcl-tooltip-theme-dark');
+                            }
+                            if (!o.arrow) {
+                                DOM.addClass(element, 'wcl-tooltip-noarrow');
                             }
 
                             return element;

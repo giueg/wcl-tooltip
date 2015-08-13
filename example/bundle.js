@@ -1,6 +1,8 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 
 window.addEventListener('load', function () {
+    'use strict';
+
     var tooltip = require('wcl-tooltip');
     tooltip.init('.tooltipped', {
         type: 'click',
@@ -81,7 +83,8 @@ window.addEventListener('load', function () {
 
     tooltip.init('.tooltip-click-menu', {
         type: 'click',
-        position: 'bottom-right'
+        position: 'bottom-right',
+        arrow: false
     });
 });
 
@@ -306,7 +309,8 @@ window.addEventListener('load', function () {
             defaultOption: {
                 type: 'click',
                 position: 'auto',
-                theme: 'standard'
+                theme: 'standard',
+                arrow: true
             },
             headerHtml: "\
              <div class='wcl-tooltip-header'>\
@@ -340,10 +344,10 @@ window.addEventListener('load', function () {
 
                     tooltip.style.top = (function (position) {
                             if (_.includes(['top-left', 'top', 'top-right'], position)) {
-                                return scrollY + targetRect.top - tooltipRect.height - 6;
+                                return scrollY + targetRect.top - tooltipRect.height - (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['bottom-left', 'bottom', 'bottom-right'], position)) {
-                                return scrollY + targetRect.bottom + 6;
+                                return scrollY + targetRect.bottom + (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['right-top', 'left-top'], position)) {
                                 return scrollY + targetRect.top;
@@ -368,10 +372,10 @@ window.addEventListener('load', function () {
                                 return scrollX + targetRect.left + targetRect.width - tooltipRect.width;
                             }
                             if (_.includes(['right-top', 'right', 'right-bottom'], position)) {
-                                return scrollX + targetRect.left + targetRect.width + 6;
+                                return scrollX + targetRect.left + targetRect.width + (option.arrow ? 6 : 1);
                             }
                             if (_.includes(['left-top', 'left', 'left-bottom'], position)) {
-                                return scrollX + targetRect.left - tooltipRect.width - 6;
+                                return scrollX + targetRect.left - tooltipRect.width - (option.arrow ? 6 : 1);
                             }
                             return 0;
                         }(position)) + 'px';
@@ -447,6 +451,9 @@ window.addEventListener('load', function () {
                             DOM.addClass(element, 'wcl-tooltip');
                             if (o.theme === 'dark') {
                                 DOM.addClass(element, 'wcl-tooltip-theme-dark');
+                            }
+                            if (!o.arrow) {
+                                DOM.addClass(element, 'wcl-tooltip-noarrow');
                             }
 
                             return element;

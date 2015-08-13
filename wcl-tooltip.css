@@ -155,3 +155,6 @@
     border-bottom-color: #212121; }
   .wcl-tooltip-theme-dark.wcl-tooltip-left:after, .wcl-tooltip-theme-dark.wcl-tooltip-left-top:after, .wcl-tooltip-theme-dark.wcl-tooltip-left-bottom:after {
     border-left-color: #212121; }
+
+.wcl-tooltip.wcl-tooltip-noarrow:before, .wcl-tooltip.wcl-tooltip-noarrow:after {
+  content: none; }

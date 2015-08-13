@@ -1,5 +1,7 @@
 
 window.addEventListener('load', function () {
+    'use strict';
+
     var tooltip = require('wcl-tooltip');
     tooltip.init('.tooltipped', {
         type: 'click',
@@ -80,6 +82,7 @@ window.addEventListener('load', function () {
 
     tooltip.init('.tooltip-click-menu', {
         type: 'click',
-        position: 'bottom-right'
+        position: 'bottom-right',
+        arrow: false
     });
 });

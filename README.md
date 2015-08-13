@@ -39,6 +39,14 @@ window.addEventListener('load', function () {
 | position | auto (default)<br>top-left<br>top<br>top-right<br>left-top<br>left<br>left-bottom<br>bottom-left<br>bottom<br>bottom-right<br>right-top<br>right<br>right-bottom     | tooltip position.     |
 | theme    | standard (default)<br> dark                          | tooltip look.         |
 
+## License
+
+[MIT](https://github.com/kawausokun/wcl-tooltip/blob/master/LICENSE)
+
+## Author
+
+[kawausokun](https://github.com/kawausokun)
+
 ## Roadmap
 
 * arrow not display

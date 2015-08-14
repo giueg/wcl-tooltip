@@ -1,0 +1,26 @@
+machine:
+  timezone: Asia/Tokyo
+
+general:
+  branches:
+    only:
+      - master
+
+dependencies:
+  pre:
+    - git config --global user.name "CircleCI"
+    - git config --global user.email "circleci@example.com"
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - |
+        git clone -b gh-pages git@github.com:kawausokun/wcl-tooltip.git ~/.wcl-tooltip
+        cd ~/.wcl-tooltip
+        npm install browserify -g
+        gem install compass
+        npm run build
+        if [ "$(git diff)" != '' ]; then
+          git commit -a -m 'Update demo site via CI [ci skip]' && git push origin gh-pages
+        fi

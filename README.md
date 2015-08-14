@@ -3,6 +3,8 @@
 [![GitHub version](https://badge.fury.io/gh/kawausokun%2Fwcl-tooltip.svg)](http://badge.fury.io/gh/kawausokun%2Fwcl-tooltip)
 [![Code Climate](https://codeclimate.com/github/kawausokun/wcl-tooltip/badges/gpa.svg)](https://codeclimate.com/github/kawausokun/wcl-tooltip)
 
+<!-- __SITE_DEMO__ -->
+
 ## Installation
 
 ```sh

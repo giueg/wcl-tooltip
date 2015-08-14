@@ -244,29 +244,40 @@
 }
 
 /* line 8, sass/screen.scss */
+h2 {
+  border-bottom: 1px solid #d0d0d0;
+  width: 80%;
+}
+
+/* line 13, sass/screen.scss */
+.page-content {
+  margin-left: 30px;
+}
+
+/* line 17, sass/screen.scss */
 #demo-container {
   margin: 20px 0;
 }
 
-/* line 13, sass/screen.scss */
+/* line 22, sass/screen.scss */
 #tooltip-menu-content ul {
   margin: 2px 0;
   padding: 0;
   list-style-image: none;
   list-style-type: none;
 }
-/* line 20, sass/screen.scss */
+/* line 29, sass/screen.scss */
 #tooltip-menu-content a {
   width: 200px;
   display: block;
   text-align: center;
 }
-/* line 25, sass/screen.scss */
+/* line 34, sass/screen.scss */
 #tooltip-menu-content a:hover {
   background-color: #dbdbdb;
 }
 
-/* line 31, sass/screen.scss */
+/* line 40, sass/screen.scss */
 #tooltip-square {
   width: 50px;
   height: 50px;

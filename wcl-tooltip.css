@@ -8,7 +8,8 @@
   border-radius: 2px;
   -webkit-box-shadow: rgba(113, 135, 164, 0.05) 0 0 10px 1px;
   -moz-box-shadow: rgba(113, 135, 164, 0.05) 0 0 10px 1px;
-  box-shadow: rgba(113, 135, 164, 0.05) 0 0 10px 1px; }
+  box-shadow: rgba(113, 135, 164, 0.05) 0 0 10px 1px;
+  z-index: 99; }
 
 .wcl-tooltip-header {
   text-align: left;

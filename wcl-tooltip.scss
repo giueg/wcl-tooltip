@@ -16,7 +16,8 @@
   border: 1px solid #ccc;
   background-color: #fff;
   @include border-radius(2px);
-  @include box-shadow(rgba(113, 135, 164, 0.05))
+  @include box-shadow(rgba(113, 135, 164, 0.05));
+  z-index: 99;
 }
 
 .wcl-tooltip-header {

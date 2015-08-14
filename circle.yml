@@ -11,8 +11,5 @@ deployment:
       - |
         git clone -b gh-pages git@github.com:kawausokun/wcl-tooltip.git ~/.wcl-tooltip
         cd ~/.wcl-tooltip
-        ls
-        pwd
-        npm run build
-        git commim -a -m 'Update demo site via CI'
-        git push origin master
+        npm install browserify -g
+        npm run build && git commit -a -m 'Update demo site via CI' && git push origin master

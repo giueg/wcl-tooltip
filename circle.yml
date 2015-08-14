@@ -1,5 +1,9 @@
 machine:
   timezone: Asia/Tokyo
+general:
+  branches:
+    only:
+      - master
 deployment:
   production:
     branch: master

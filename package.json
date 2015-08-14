@@ -5,7 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "get-source": "curl https://raw.githubusercontent.com/kawausokun/wcl-tooltip/master/README.md -o _includes/README.md; sed -i '/__SITE_DEMO__/c\\{% include demo.html %}' _includes/README.md; sed -i 's/```\\(.\\+\\)/{% highlight \\1 %}/' _includes/README.md; sed -i 's/```$/{% endhighlight %}/' _includes/README.md",
-    "build": "npm run get-source; npm uninstall wcl-tooltip; npm install; browserify javascripts/src/main.js -o javascripts/bundle.js; compass compile stylesheets; jekyll build"
+    "build": "npm run get-source && npm uninstall wcl-tooltip && npm install && browserify javascripts/src/main.js -o javascripts/bundle.js && compass compile stylesheets"
   },
   "repository": {
     "type": "git",

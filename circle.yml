@@ -22,5 +22,5 @@ deployment:
         gem install compass
         npm run build
         if [ "$(git diff)" != '' ]; then
-          git commit -a -m 'Update demo site via CI' && git push origin gh-pages
+          git commit -a -m 'Update demo site via CI [ci skip]' && git push origin gh-pages
         fi

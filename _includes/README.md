@@ -55,11 +55,12 @@ window.addEventListener('load', function () {
 
 ## Roadmap
 
+* sticky theme
 * ajax
 * bower support
 * direct html script src
 * delay show
-* sticky theme
+* responsive
 
 ## TODO
 

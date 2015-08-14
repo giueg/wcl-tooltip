@@ -1,0 +1,23 @@
+{
+  "name": "wcl-tooltip-site",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "get-source": "curl https://raw.githubusercontent.com/kawausokun/wcl-tooltip/master/README.md -o _includes/README.md; sed -i '/__SITE_DEMO__/c\\{% include demo.html %}' _includes/README.md",
+    "build": "npm run get-source; browserify javascripts/src/main.js -o javascripts/bundle.js; compass compile stylesheets; jekyll build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kawausokun/wcl-tooltip.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kawausokun/wcl-tooltip/issues"
+  },
+  "homepage": "https://github.com/kawausokun/wcl-tooltip",
+  "dependencies": {
+    "wcl-tooltip": "git://github.com/kawausokun/wcl-tooltip.git"
+  }
+}

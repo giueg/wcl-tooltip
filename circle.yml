@@ -1,9 +1,16 @@
 machine:
   timezone: Asia/Tokyo
+
 general:
   branches:
     only:
       - master
+
+dependencies:
+  pre:
+    - git config --global user.name "CircleCI"
+    - git config --global user.email "circleci@example.com"
+
 deployment:
   production:
     branch: master

@@ -7,22 +7,22 @@
 
 ## Installation
 
-```sh
+{% highlight sh %}
 npm install https://github.com/kawausokun/wcl-tooltip
-```
+{% endhighlight %}
 
 ## Usage
 
-```js
+{% highlight js %}
 window.addEventListener('load', function () {
   var tooltip = require('wcl-tooltip');
   tooltip.init('.i-need-tooltip', {
     type: 'click'
   });
 });
-```
+{% endhighlight %}
 
-```html
+{% highlight html %}
 <span class="i-need-tooltip" data-wcltip-text="I'm tooltip!">data-wcltip-text</span>
 
 <span class="i-need-tooltip" data-wcltip-text-src="menu2-tooltip">data-wcltip-text-src</span>
@@ -32,7 +32,7 @@ window.addEventListener('load', function () {
 <div id="menu3-tooltip" style="display: none;">
   <img src="img/kumamon.jpg" alt="kuma-mon"><br/>
 </div>
-```
+{% endhighlight %}
 
 ## Option
 

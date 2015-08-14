@@ -8,8 +8,8 @@ deployment:
   production:
     branch: master
     commands:
-      - git clone -b gh-pages git@github.com:kawausokun/wcl-tooltip.git
-      - cd wcl-tooltip
+      - git clone -b gh-pages git@github.com:kawausokun/wcl-tooltip.git __wcl-tooltip
+      - cd __wcl-tooltip
       - ls
       - pwd
       - npm run build

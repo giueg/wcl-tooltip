@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>wcl-tooltip by kawausokun</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>wcl-tooltip</h1>
+        <p>Simple JavaScript&amp;CSS tooltip</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/kawausokun/wcl-tooltip" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/kawausokun/wcl-tooltip/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/kawausokun/wcl-tooltip/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a id="wcl-tooltip" class="anchor" href="#wcl-tooltip" aria-hidden="true"><span class="octicon octicon-link"></span></a>wcl-tooltip</h1>
+
+<p><a href="http://badge.fury.io/gh/kawausokun%2Fwcl-tooltip"><img src="https://badge.fury.io/gh/kawausokun%2Fwcl-tooltip.svg" alt="GitHub version"></a>
+<a href="https://codeclimate.com/github/kawausokun/wcl-tooltip"><img src="https://codeclimate.com/github/kawausokun/wcl-tooltip/badges/gpa.svg" alt="Code Climate"></a></p>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<div class="highlight highlight-sh"><pre>npm install https://github.com/kawausokun/wcl-tooltip</pre></div>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<div class="highlight highlight-js"><pre><span class="pl-c1">window</span>.<span class="pl-c1">addEventListener</span>(<span class="pl-s"><span class="pl-pds">'</span>load<span class="pl-pds">'</span></span>, <span class="pl-k">function</span> () {
+  <span class="pl-k">var</span> tooltip <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>wcl-tooltip<span class="pl-pds">'</span></span>);
+  tooltip.<span class="pl-c1">init</span>(<span class="pl-s"><span class="pl-pds">'</span>.i-need-tooltip<span class="pl-pds">'</span></span>, {
+    type<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>click<span class="pl-pds">'</span></span>
+  });
+});</pre></div>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>i-need-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">data-wcltip-text</span>=<span class="pl-s"><span class="pl-pds">"</span>I'm tooltip!<span class="pl-pds">"</span></span>&gt;data-wcltip-text&lt;/<span class="pl-ent">span</span>&gt;
+
+&lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>i-need-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">data-wcltip-text-src</span>=<span class="pl-s"><span class="pl-pds">"</span>menu2-tooltip<span class="pl-pds">"</span></span>&gt;data-wcltip-text-src&lt;/<span class="pl-ent">span</span>&gt;
+&lt;<span class="pl-ent">span</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>menu2-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>display: none;<span class="pl-pds">"</span></span>&gt;I'm tooltip too!&lt;/<span class="pl-ent">span</span>&gt;
+
+&lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>i-need-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">data-wcltip-html-src</span>=<span class="pl-s"><span class="pl-pds">"</span>menu3-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">data-wcltip-title</span>=<span class="pl-s"><span class="pl-pds">"</span>Kuma-mon<span class="pl-pds">"</span></span>&gt;data-wcltip-html-src&lt;/<span class="pl-ent">span</span>&gt;
+&lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>menu3-tooltip<span class="pl-pds">"</span></span> <span class="pl-e">style</span>=<span class="pl-s"><span class="pl-pds">"</span>display: none;<span class="pl-pds">"</span></span>&gt;
+  &lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>img/kumamon.jpg<span class="pl-pds">"</span></span> <span class="pl-e">alt</span>=<span class="pl-s"><span class="pl-pds">"</span>kuma-mon<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">br</span>/&gt;
+&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+
+<h2>
+<a id="option" class="anchor" href="#option" aria-hidden="true"><span class="octicon octicon-link"></span></a>Option</h2>
+
+<h3>
+<a id="init-options" class="anchor" href="#init-options" aria-hidden="true"><span class="octicon octicon-link"></span></a>init options</h3>
+
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Values</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>click (default)<br> hover</td>
+<td>Tooltip show trigger.</td>
+</tr>
+<tr>
+<td>position</td>
+<td>auto (default)<br>top-left<br>top<br>top-right<br>left-top<br>left<br>left-bottom<br>bottom-left<br>bottom<br>bottom-right<br>right-top<br>right<br>right-bottom</td>
+<td>Tooltip position.</td>
+</tr>
+<tr>
+<td>theme</td>
+<td>standard (default)<br> dark</td>
+<td>Tooltip look.</td>
+</tr>
+<tr>
+<td>arrow</td>
+<td>true (default)<br> false</td>
+<td>Show arrow.</td>
+</tr>
+</tbody>
+</table>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p><a href="https://github.com/kawausokun/wcl-tooltip/blob/master/LICENSE">MIT</a></p>
+
+<h2>
+<a id="author" class="anchor" href="#author" aria-hidden="true"><span class="octicon octicon-link"></span></a>Author</h2>
+
+<p><a href="https://github.com/kawausokun">kawausokun</a></p>
+
+<h2>
+<a id="roadmap" class="anchor" href="#roadmap" aria-hidden="true"><span class="octicon octicon-link"></span></a>Roadmap</h2>
+
+<ul>
+<li>ajax</li>
+<li>bower support</li>
+<li>direct html script src</li>
+<li>delay show</li>
+<li>sticky theme</li>
+</ul>
+
+<h2>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO</h2>
+
+<ul>
+<li>Add minimum test</li>
+<li>min&amp;map js</li>
+</ul>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/kawausokun">kawausokun</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>

@@ -12,4 +12,5 @@ deployment:
         git clone -b gh-pages git@github.com:kawausokun/wcl-tooltip.git ~/.wcl-tooltip
         cd ~/.wcl-tooltip
         npm install browserify -g
+        gem install compass
         npm run build && git commit -a -m 'Update demo site via CI' && git push origin master

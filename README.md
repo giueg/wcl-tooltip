@@ -1,6 +1,7 @@
 # wcl-tooltip
 
 [![GitHub version](https://badge.fury.io/gh/kawausokun%2Fwcl-tooltip.svg)](http://badge.fury.io/gh/kawausokun%2Fwcl-tooltip)
+[![Circle CI](https://circleci.com/gh/kawausokun/wcl-tooltip.svg?style=shield)](https://circleci.com/gh/kawausokun/wcl-tooltip)
 [![Code Climate](https://codeclimate.com/github/kawausokun/wcl-tooltip/badges/gpa.svg)](https://codeclimate.com/github/kawausokun/wcl-tooltip)
 
 <!-- __SITE_DEMO__ -->

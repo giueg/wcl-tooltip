@@ -1,0 +1,36 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+
+@import "../../javascripts/node_modules/wcl-tooltip/wcl-tooltip";
+
+#demo-container {
+  margin: 20px 0;
+}
+
+#tooltip-menu-content {
+  ul {
+    margin: 2px 0;
+    padding: 0;
+    list-style-image: none;
+    list-style-type: none;
+  }
+
+  a {
+    width: 200px;
+    display: block;
+    text-align: center;
+
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
+}
+
+#tooltip-square {
+  width: 50px;
+  height: 50px;
+  background-color: indianred;
+  border: 2px solid #964141;
+}

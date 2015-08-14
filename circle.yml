@@ -20,4 +20,7 @@ deployment:
         cd ~/.wcl-tooltip
         npm install browserify -g
         gem install compass
-        npm run build && git commit -a -m 'Update demo site via CI' && git push origin master
+        npm run build
+        if [ "$(git diff)" != '' ]; then
+          git commit -a -m 'Update demo site via CI' && git push origin master
+        fi

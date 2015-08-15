@@ -12,4 +12,9 @@ window.addEventListener('load', function() {
         theme: 'dark'
     });
 
+    var tables = document.getElementsByTagName('table');
+    for (var i = 0, il = tables.length; i < il; i++) {
+        tables[i].className = 'mdl-data-table mdl-js-data-table mdl-shadow--1dp';
+        componentHandler.upgradeElement(tables[i]);
+    }
 });

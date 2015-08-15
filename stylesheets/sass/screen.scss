@@ -6,8 +6,17 @@
 @import "../../node_modules/wcl-tooltip/wcl-tooltip";
 
 h2 {
-  border-bottom: 1px solid #d0d0d0;
   width: 80%;
+  border-bottom: 1px solid #d0d0d0;
+  line-height: 1.2em;
+}
+
+pre {
+  width: 75%;
+  padding: 10px;
+  background-color: #f8f8f8;
+  @include border-radius(4px);
+  overflow-x: scroll;
 }
 
 .page-content {

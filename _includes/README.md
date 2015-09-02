@@ -57,6 +57,7 @@ window.addEventListener('load', function () {
 
 ## Roadmap
 
+* input element support
 * sticky theme
 * ajax
 * bower support

@@ -12,7 +12,7 @@
 }
 
 .wcl-tooltip {
-  position: absolute;
+  position: fixed;
   border: 1px solid #ccc;
   background-color: #fff;
   @include border-radius(2px);

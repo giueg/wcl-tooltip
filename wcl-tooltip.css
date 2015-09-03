@@ -1,5 +1,5 @@
 .wcl-tooltip {
-  position: absolute;
+  position: fixed;
   border: 1px solid #ccc;
   background-color: #fff;
   -webkit-border-radius: 2px;

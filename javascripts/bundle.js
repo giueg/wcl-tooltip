@@ -327,10 +327,6 @@ window.addEventListener('load', function() {
                     var o = _.extend(Tooltip.defaultOption, option);
 
                     firstInit && (function () {
-                        var container = document.createElement('div');
-                        container.id = 'wcl-tooltip-container';
-                        document.body.appendChild(container);
-
                         Event.addClickEvent(document, function (m) {
                             if (createdElement &&
                                 ((!DOM.hasClass(m.target, 'wcl-tooltip-holder') &&
@@ -401,7 +397,7 @@ window.addEventListener('load', function() {
 
                             Effect.fadeIn(element);
 
-                            document.getElementById('wcl-tooltip-container').appendChild(element);
+                            this.parentNode.appendChild(element);
                             calcPosition(this, element, o);
 
                             DOM.addClass(this, 'wcl-tooltip-holder');

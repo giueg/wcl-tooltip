@@ -4,7 +4,7 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 14, ../node_modules/wcl-tooltip/wcl-tooltip.scss */
 .wcl-tooltip {
-  position: absolute;
+  position: fixed;
   border: 1px solid #ccc;
   background-color: #fff;
   -webkit-border-radius: 2px;

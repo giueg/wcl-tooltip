@@ -325,28 +325,31 @@
 
                     var obj = document.querySelectorAll(selector),
                         buildHtml = function () {
-                            if (this.hasAttribute('data-wcltip-text')) {
-                                return Tooltip.bodyHtml.replace('__BODY__',
-                                    _.escapeHtml(this.getAttribute('data-wcltip-text')));
-                            }
-                            if (this.hasAttribute('data-wcltip-text-src')) {
-                                return Tooltip.bodyHtml.replace('__BODY__',
-                                    _.escapeHtml(
-                                        document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML
-                                    )
-                                );
-                            }
-                            if (this.hasAttribute('data-wcltip-html-src')) {
-                                var html = Tooltip.bodyHtml.replace('__BODY__',
-                                    document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML);
-                                if (this.hasAttribute('data-wcltip-title')) {
-                                    html = Tooltip.headerHtml.replace('__TITLE__',
-                                            this.getAttribute('data-wcltip-title')) + html;
+                            var src = (function() {
+                                if (this.hasAttribute('data-wcltip-text')) {
+                                    return this.getAttribute('data-wcltip-text');
                                 }
-                                return html;
+                                if (this.hasAttribute('data-wcltip-text-src')) {
+                                    return document.getElementById(this.getAttribute('data-wcltip-text-src')).innerHTML;
+                                }
+                                if (this.hasAttribute('data-wcltip-html-src')) {
+                                    return document.getElementById(this.getAttribute('data-wcltip-html-src')).innerHTML;
+                                }
+                                return '';
+                            }).call(this);
+                            if (o.hasOwnProperty('beforeRender') && typeof o.beforeRender === 'function') {
+                                src = o.beforeRender(src);
+                            }
+                            if (this.hasAttribute('data-wcltip-text') || this.hasAttribute('data-wcltip-text-src')) {
+                                src = _.escapeHtml(src);
+                            }
+                            var html = Tooltip.bodyHtml.replace('__BODY__', src);
+                            if (this.hasAttribute('data-wcltip-title')) {
+                                html = Tooltip.headerHtml.replace('__TITLE__',
+                                        this.getAttribute('data-wcltip-title')) + html;
                             }
 
-                            return '';
+                            return html;
                         },
                         createElement = function () {
                             var element = document.createElement('div');

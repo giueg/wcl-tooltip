@@ -69,3 +69,7 @@ window.addEventListener('load', function () {
 
 * Add minimum test
 * min&map js
+
+## Issues
+
+* It have position problem when target element position is absolute.

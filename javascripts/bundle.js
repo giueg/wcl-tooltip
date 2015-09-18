@@ -318,7 +318,7 @@ window.addEventListener('load', function() {
                         return;
                     }
                     DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                    createdElement.remove();
+                    createdElement.parentNode.removeChild(createdElement);
                     createdElement = null;
                     holderElement = null;
                 }
@@ -361,7 +361,7 @@ window.addEventListener('load', function() {
                                 return '';
                             }).call(this);
                             if (o.hasOwnProperty('beforeRender') && typeof o.beforeRender === 'function') {
-                                src = o.beforeRender(src);
+                                src = o.beforeRender.call(this, src);
                             }
                             if (this.hasAttribute('data-wcltip-text') || this.hasAttribute('data-wcltip-text-src')) {
                                 src = _.escapeHtml(src);

@@ -404,7 +404,7 @@ window.addEventListener('load', function () {
                         return;
                     }
                     DOM.removeClass(holderElement, 'wcl-tooltip-holder');
-                    createdElement.remove();
+                    createdElement.parentNode.removeChild(createdElement);
                     createdElement = null;
                     holderElement = null;
                 }

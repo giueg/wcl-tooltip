@@ -74,6 +74,55 @@
                 };
             }())
         },
+        Browser = {
+            ieVersion: function () {
+                var ua = window.navigator.userAgent;
+
+                var msie = ua.indexOf('MSIE ');
+                if (msie > 0) {
+                    // IE 10 or older => return version number
+                    return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
+                }
+
+                var trident = ua.indexOf('Trident/');
+                if (trident > 0) {
+                    // IE 11 => return version number
+                    var rv = ua.indexOf('rv:');
+                    return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
+                }
+
+                var edge = ua.indexOf('Edge/');
+                if (edge > 0) {
+                    // IE 12 => return version number
+                    return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
+                }
+
+                // other browser
+                return false;
+            },
+            getBoundingClientRect: function(elem) {
+                var rect = elem.getBoundingClientRect();
+
+                var pageBorderLeft = this.ieVersion() ? (document.body.scrollLeft || document.documentElement.scrollLeft) : 0.0;
+                var pageBorderTop  = this.ieVersion() ? (document.body.scrollTop || document.documentElement.scrollTop) : 0.0;
+
+                rect = {
+                    width: rect.width,
+                    height: rect.height,
+                    left: rect.left - pageBorderLeft,
+                    top: rect.top - pageBorderTop,
+                    right: 1383,
+                    bottom: rect.bottom - pageBorderTop
+                };
+                return rect;
+            },
+            scrollX: function () {
+                return (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
+            },
+            scrollY: function () {
+                return (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
+            }
+        },
         Event = {
             addClickEvent: function (el, handler) {
                 if (el.addEventListener) {
@@ -238,10 +287,10 @@
                 var firstInit = true;
 
                 function calcPosition(target, tooltip, option) {
-                    var targetRect = target.getBoundingClientRect(),
-                        tooltipRect = tooltip.getBoundingClientRect(),
-                        scrollX = window.scrollX,
-                        scrollY = window.scrollY,
+                    var targetRect = Browser.getBoundingClientRect(target),
+                        tooltipRect = Browser.getBoundingClientRect(tooltip),
+                        scrollX = Browser.scrollX(),
+                        scrollY = Browser.scrollY(),
                         position = option.position === 'auto' ? (function (t) {
                             if (t.top > t.bottom) {
                                 return 'top';
@@ -251,7 +300,8 @@
 
                     DOM.addClass(tooltip, 'wcl-tooltip-' + position);
 
-                    tooltip.style.top = (function (position) {
+                    var css = '';
+                    css += 'top: ' + (function (position) {
                             if (_.includes(['top-left', 'top', 'top-right'], position)) {
                                 return scrollY + targetRect.top - tooltipRect.height - (option.arrow ? 6 : 1);
                             }
@@ -268,9 +318,9 @@
                                 return scrollY + targetRect.top + targetRect.height - tooltipRect.height;
                             }
                             return 0;
-                        }(position)) + 'px';
+                        }(position)) + 'px;';
 
-                    tooltip.style.left = (function (position) {
+                    css += 'left: ' + (function (position) {
                             if (_.includes(['top-left', 'bottom-left'], position)) {
                                 return scrollX + targetRect.left;
                             }
@@ -287,7 +337,9 @@
                                 return scrollX + targetRect.left - tooltipRect.width - (option.arrow ? 6 : 1);
                             }
                             return 0;
-                        }(position)) + 'px';
+                        }(position)) + 'px;';
+
+                    tooltip.style.cssText = css;
                 }
 
                 function destroyTooltip() {

@@ -398,8 +398,14 @@ window.addEventListener('load', function() {
                         firstInit = false;
                     }());
 
-                    var obj = document.querySelectorAll(selector),
-                        buildHtml = function () {
+                    var obj;
+                    if (selector.nodeType) {
+                        obj = [selector];
+                    } else {
+                        obj = document.querySelectorAll(selector);
+                    }
+
+                    var buildHtml = function () {
                             var src = (function() {
                                 if (this.hasAttribute('data-wcltip-text')) {
                                     return this.getAttribute('data-wcltip-text');
@@ -462,14 +468,14 @@ window.addEventListener('load', function() {
                             holderElement = this;
                         };
 
-                    for (var i = 0, length = obj.length; i < length; i++) {
+                    Array.prototype.forEach.call(obj, function (node) {
                         if (o.type === 'hover') {
-                            Event.addMouseoverEvent(obj.item(i), showTooltip);
-                            Event.addMouseoutEvent(obj.item(i), destroyTooltip);
+                            Event.addMouseoverEvent(node, showTooltip);
+                            Event.addMouseoutEvent(node, destroyTooltip);
                         } else if (o.type === 'click') {
-                            Event.addClickEvent(obj.item(i), showTooltip);
+                            Event.addClickEvent(node, showTooltip);
                         }
-                    }
+                    });
                 };
             }())
         };

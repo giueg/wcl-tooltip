@@ -98,7 +98,8 @@ window.addEventListener('load', function () {
         beforeRender: beforeRender
     });
 
-    tooltip.init('.tooltip-click-menu', {
+    var o = document.querySelector('.tooltip-click-menu');
+    tooltip.init(o, {
         type: 'click',
         position: 'bottom-right',
         arrow: false
